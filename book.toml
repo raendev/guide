@@ -1,0 +1,15 @@
+[book]
+authors = ["Willem Wyndham"]
+language = "en"
+multilingual = false
+src = "src"
+title = "RAEN Guide"
+
+[output.html]
+git-repository-url = "https://github.com/raendev/guide/tree/master"
+edit-url-template  = "https://github.com/raendev/guide/tree/master/{path}"
+line-numbers=true
+
+[output.html.playground]
+editable = true
+line-numbers = true

@@ -18,4 +18,4 @@ This means once `val` is incremented to `127`, the next time it will wrap around
 
 Lastly, `pub` is short for `public`, meaning that the item is visible outside of the file[^note].
 
-[^note]: Technically it's a module, but that's not important right now.
+[^note]: Technically it's a [namespace](https://doc.rust-lang.org/reference/visibility-and-privacy.html), but that's not important right now.

@@ -56,7 +56,7 @@ Here the value is incremented by 1.  This is the same as `self.val = self.val + 
 
 ### `log!`
 
-This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case `log` emits a log from executing the function which you can see in the NEAR explorer.
+This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case `log` generates code that formats a string and emits a log from executing the function which you can see in the NEAR explorer.
 
 ```rust,noplayground,ignore
 {{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:24}}

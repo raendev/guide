@@ -9,5 +9,5 @@
   - [Using RAEN]()
 
 
-- [Status Message](./status-message/intro.md)
-  - [Update Account State](./status-message/set_message.md)
+- [Status Message]() <!-- ./status-message/intro.md) -->
+  - [Update Account State]() <!-- ./status-message/set_message.md) -->

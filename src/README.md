@@ -1,4 +1,6 @@
-# Introduction
+# Getting Set Up
+
+For this tutorial you will need a testnet account.  If you do not have one go [here](https://wallet.testnet.near.org), using the email option is the easiest method for ensuring you can recover your account.
 
 `raen` is a build tool for NEAR smart contracts.
 

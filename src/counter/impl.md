@@ -27,10 +27,7 @@ This is the return type of the method, here an signed 8-bit integer, the same as
 
 ### `self.val`
 
-This accesses the field `val`.  You will also notice that there is no `return` statement, this is because in rust everything is an expression and a function returns the value of the last expression.
-
-You might be familiar with `/** Doc Strings */` in other languages, Rust uses `///` vs `//` to attach the comment to document something.
-
+This accesses the field `val`. You will also notice that there is no `return` statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.
 
 ## A `change` method
 
@@ -56,8 +53,4 @@ Here the value is incremented by 1.  This is the same as `self.val = self.val + 
 
 ### `log!`
 
-This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case `log` generates code that formats a string and emits a log from executing the function which you can see in the NEAR explorer.
-
-```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:24}}
-```
+This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case, `log` generates code that formats a string and emits a log which you can see in [NEAR Explorer](https://explorer.near.org/) or other block-explorer tools.

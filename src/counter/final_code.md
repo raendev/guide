@@ -78,6 +78,8 @@ where
 {{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:14:38}}
 ```
 
+You might be familiar with `/** Doc Strings */` in other languages. In Rust, you can use `//` for "regular comments" and `///` for Doc comments, which will automatically be turned into documentation by various tooling.
+
 Looking again at the view function `get_num` it returns an `i8`, but this data must be serialized so that it can be returned to who ever called this via RPC[^note]. The `near_bindgen` by default generates the code to serialize this into a JSON number since this is the most common case, e.g. a web app calling `get_num`.
 
 

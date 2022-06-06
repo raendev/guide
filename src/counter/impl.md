@@ -19,7 +19,7 @@ This is the keyword for `function`.
 
 ### `&self`
 
-This is the reference to the `Counter` struct. This lets you access the fields on the struct, however, it is `immutable` meaning that you cannot change or "mutate" the field.
+This is the reference to the `Counter` struct. This lets you access the fields on the struct, however, it is _immutable_ meaning that you cannot change or "mutate" the field.
 
 ### `-> i8`
 

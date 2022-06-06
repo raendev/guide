@@ -158,8 +158,7 @@
 <h3 id="--i8"><a class="header" href="#--i8"><code>-&gt; i8</code></a></h3>
 <p>This is the return type of the method, here an signed 8-bit integer, the same as <code>val</code>.</p>
 <h3 id="selfval"><a class="header" href="#selfval"><code>self.val</code></a></h3>
-<p>This accesses the field <code>val</code>.  You will also notice that there is no <code>return</code> statement, this is because in rust everything is an expression and a function returns the value of the last expression.</p>
-<p>You might be familiar with <code>/** Doc Strings */</code> in other languages, Rust uses <code>///</code> vs <code>//</code> to attach the comment to document something.</p>
+<p>This accesses the field <code>val</code>. You will also notice that there is no <code>return</code> statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.</p>
 <h2 id="a-change-method"><a class="header" href="#a-change-method">A <code>change</code> method</a></h2>
 <p>Next let's see how to mutate or change <code>val</code>. </p>
 <pre><code class="language-rust noplayground ignore">impl Counter {
@@ -178,9 +177,7 @@
 <h3 id="selfval--1"><a class="header" href="#selfval--1"><code>self.val += 1;</code></a></h3>
 <p>Here the value is incremented by 1.  This is the same as <code>self.val = self.val + 1</code>. You will also notice the semicolon, <code>;</code>; this is to separate the expressions.</p>
 <h3 id="log"><a class="header" href="#log"><code>log!</code></a></h3>
-<p>This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case <code>log</code> generates code that formats a string and emits a log from executing the function which you can see in the NEAR explorer.</p>
-<pre><code class="language-rust noplayground ignore">        log!(&quot;Increased number to {}&quot;, self.val);
-</code></pre>
+<p>This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case, <code>log</code> generates code that formats a string and emits a log which you can see in <a href="https://explorer.near.org/">NEAR Explorer</a> or other block-explorer tools.</p>
 
                     </main>
 

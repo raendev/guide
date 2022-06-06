@@ -224,6 +224,7 @@ impl Counter {
     }
 }
 </code></pre>
+<p>You might be familiar with <code>/** Doc Strings */</code> in other languages. In Rust, you can use <code>//</code> for &quot;regular comments&quot; and <code>///</code> for Doc comments, which will automatically be turned into documentation by various tooling.</p>
 <p>Looking again at the view function <code>get_num</code> it returns an <code>i8</code>, but this data must be serialized so that it can be returned to who ever called this via RPC<sup class="footnote-reference"><a href="#note">1</a></sup>. The <code>near_bindgen</code> by default generates the code to serialize this into a JSON number since this is the most common case, e.g. a web app calling <code>get_num</code>.</p>
 <div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
 <p><a href="">Remote Procedure Call</a> is the network request made to a NEAR Node to execute a view call or a change call.</p>

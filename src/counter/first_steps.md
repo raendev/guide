@@ -14,6 +14,8 @@ The field `val` is of type `i8`, which, while sounding a bit like a iPhone versi
 
 This means once `val` is incremented to `127`, the next time it will wrap around to be `-128`.
 
+No need to get distracted now, but if you want to read a little more about number types, check out [The Rust Book's description](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types).
+
 ### `pub`
 
 Lastly, `pub` is short for `public`, meaning that the item is visible outside of the file[^note].

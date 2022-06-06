@@ -208,13 +208,13 @@
 <h3 id="log"><a class="header" href="#log"><code>log!</code></a></h3>
 <p>This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case, <code>log</code> generates code that formats a string and emits a log which you can see in <a href="https://explorer.near.org/">NEAR Explorer</a> or other block-explorer tools.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="final-code"><a class="header" href="#final-code">Final Code</a></h1>
-<p>Let's take a look at the full contract and go over the details skipped over first.</p>
+<p>Let's take a look at the full contract and go over details we skipped at first.</p>
 <h2 id="imports-from-near-sdk"><a class="header" href="#imports-from-near-sdk">Imports from <code>near-sdk</code></a></h2>
 <pre><code class="language-rust noplayground ignore">use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{log, near_bindgen};
 </code></pre>
 <h3 id="borsh"><a class="header" href="#borsh">Borsh</a></h3>
-<p>Borsh is a serialization framework, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a type to be Borsh Serializable it needs to implement the <code>trait</code>s <code>BorshSerialize</code> and <code>BorshDeserialize</code>, which are like interfaces, with <code>serialize</code> and <code>deserialize</code> method respectively.</p>
+<p>Borsh is <a href="https://borsh.io/">a serialization framework</a>, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a Rust type to be Borsh Serializable it needs to implement <code>BorshSerialize</code> and <code>BorshDeserialize</code>.</p>
 <h3 id="log-1"><a class="header" href="#log-1">log</a></h3>
 <p>We saw this before when printing the incremented value. As you can see macros are imported just like everything else.</p>
 <h3 id="near_bindgen"><a class="header" href="#near_bindgen"><code>near_bindgen</code></a></h3>
@@ -226,10 +226,15 @@ pub struct Counter {
     val: i8,
 }
 </code></pre>
-<p><code>near_bindgen</code> here means that the contract's state comes from this struct. <code>derive</code> is a built in macro. The <code>Default</code> trait has a single <code>default</code> method, which returns a default instance of a type. <code>derive(Default)</code>, generates the code of </p>
-<p><code>derive(..., BorshDeserialize, BorshSerialize)</code> generates an implementation of the traits so that the contract state can be written and read to storage.</p>
+<p><code>near_bindgen</code> here means that the contract's state comes from this struct.</p>
+<p><code>derive</code> is a built in macro. Each item passed to <code>derive</code> is a <a href="https://doc.rust-lang.org/stable/book/ch10-02-traits.html">trait</a>:</p>
+<ul>
+<li>The <code>Default</code> trait has a single <code>default</code> method, which returns a default instance of a type.</li>
+<li><code>BorshDeserialize</code> generates a <code>deserialize</code> method, so contract state can be read from storage.</li>
+<li><code>BorshSerialize</code> generates a <code>serialize</code> method, so contract state can be written to storage.</li>
+</ul>
 <details>
-<summary>Generated implementations from `derive` for those interested</summary>
+<summary>If you're interested, expand this section to see the code the above `derive` macro will generate.</summary>
 <pre><code class="language-rust noplayground ignore">
 impl ::core::default::Default for Counter {
     #[inline]
@@ -291,11 +296,20 @@ impl Counter {
     }
 }
 </code></pre>
-<p>You might be familiar with <code>/** Doc Strings */</code> in other languages. In Rust, you can use <code>//</code> for &quot;regular comments&quot; and <code>///</code> for Doc comments, which will automatically be turned into documentation by various tooling.</p>
-<p>Looking again at the view function <code>get_num</code> it returns an <code>i8</code>, but this data must be serialized so that it can be returned to who ever called this via RPC<sup class="footnote-reference"><a href="#note">1</a></sup>. The <code>near_bindgen</code> by default generates the code to serialize this into a JSON number since this is the most common case, e.g. a web app calling <code>get_num</code>.</p>
-<div class="footnote-definition" id="note"><sup class="footnote-definition-label">1</sup>
-<p><a href="counter/">Remote Procedure Call</a> is the network request made to a NEAR Node to execute a view call or a change call.</p>
-</div>
+<p>In Rust, you can use <code>//</code> for regular comments and <code>///</code> for <a href="https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments">documentation comments</a>, which will automatically be turned into documentation by various tooling.</p>
+<h2 id="digging-deeper"><a class="header" href="#digging-deeper">Digging deeper</a></h2>
+<p>Look again at the view function <code>get_num</code>. It returns an <code>i8</code>. However, any call to a NEAR contract happens via <a href="https://docs.near.org/docs/api/overview#rpc-api">Remote Procedure Calls</a>, and this <code>i8</code> needs to be serialized into something the consumer can read. By default, <code>near_bindgen</code> generates code to serialize it into a JSON number, since this is the most common case, e.g. a web app calling <code>get_num</code>. If you really need to, you can override this setting. For example, this would serialize it to Borsh instead:</p>
+<pre><code class="language-rust noplayground ignore">#[result_serializer(borsh)]
+pub fn get_num(&amp;self) -&gt; i8 {
+    self.val
+}
+</code></pre>
+<p>This can be useful in a couple cases:</p>
+<ul>
+<li><a href="https://docs.near.org/docs/concepts/gas">gas</a>-intensive contract methods that need to optimize every detail</li>
+<li>methods only used in <a href="https://docs.near.org/docs/tutorials/contracts/cross-contract-calls">cross-contract call</a> logic, where no external consumers are expected or allowed</li>
+</ul>
+<p>However, most of the time you will probably want to stick with the default JSON result serialization, to make it easier for apps to interact with your contract.</p>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="basic-status-message-contract"><a class="header" href="#basic-status-message-contract">Basic Status Message Contract</a></h1>
 <p>Previously the contract had state that was shared by any account that can call the contract. Next we will show how each account can get its own state within the contract.</p>
 <h2 id="signer-account"><a class="header" href="#signer-account">Signer Account</a></h2>

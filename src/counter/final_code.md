@@ -1,6 +1,6 @@
 # Final Code
 
-Let's take a look at the full contract and go over the details skipped over first.
+Let's take a look at the full contract and go over details we skipped at first.
 
 ## Imports from `near-sdk`
  
@@ -10,7 +10,7 @@ Let's take a look at the full contract and go over the details skipped over firs
 
 ### Borsh
 
-Borsh is a serialization framework, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a type to be Borsh Serializable it needs to implement the `trait`s `BorshSerialize` and `BorshDeserialize`, which are like interfaces, with `serialize` and `deserialize` method respectively.
+Borsh is [a serialization framework](https://borsh.io/), which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a Rust type to be Borsh Serializable it needs to implement `BorshSerialize` and `BorshDeserialize`.
 
 ### log
 
@@ -26,12 +26,16 @@ This is the real magic of `near-sdk`.  Like `log` it is a macro, but generates c
 {{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:8:12}}
 ```
 
-`near_bindgen` here means that the contract's state comes from this struct. `derive` is a built in macro. The `Default` trait has a single `default` method, which returns a default instance of a type. `derive(Default)`, generates the code of 
+`near_bindgen` here means that the contract's state comes from this struct.
 
-`derive(..., BorshDeserialize, BorshSerialize)` generates an implementation of the traits so that the contract state can be written and read to storage.
+`derive` is a built in macro. Each item passed to `derive` is a [trait](https://doc.rust-lang.org/stable/book/ch10-02-traits.html):
+
+* The `Default` trait has a single `default` method, which returns a default instance of a type.
+* `BorshDeserialize` generates a `deserialize` method, so contract state can be read from storage.
+* `BorshSerialize` generates a `serialize` method, so contract state can be written to storage.
 
 <details>
-<summary>Generated implementations from `derive` for those interested</summary>
+<summary>If you're interested, expand this section to see the code the above `derive` macro will generate.</summary>
 
 ```rust,noplayground,ignore
 
@@ -78,9 +82,22 @@ where
 {{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:14:38}}
 ```
 
-You might be familiar with `/** Doc Strings */` in other languages. In Rust, you can use `//` for "regular comments" and `///` for Doc comments, which will automatically be turned into documentation by various tooling.
+In Rust, you can use `//` for regular comments and `///` for [documentation comments](https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments), which will automatically be turned into documentation by various tooling.
 
-Looking again at the view function `get_num` it returns an `i8`, but this data must be serialized so that it can be returned to who ever called this via RPC[^note]. The `near_bindgen` by default generates the code to serialize this into a JSON number since this is the most common case, e.g. a web app calling `get_num`.
+## Digging deeper
 
+Look again at the view function `get_num`. It returns an `i8`. However, any call to a NEAR contract happens via [Remote Procedure Calls](https://docs.near.org/docs/api/overview#rpc-api), and this `i8` needs to be serialized into something the consumer can read. By default, `near_bindgen` generates code to serialize it into a JSON number, since this is the most common case, e.g. a web app calling `get_num`. If you really need to, you can override this setting. For example, this would serialize it to Borsh instead:
 
-[^note]: [Remote Procedure Call]() is the network request made to a NEAR Node to execute a view call or a change call.
+```rust,noplayground,ignore
+#[result_serializer(borsh)]
+pub fn get_num(&self) -> i8 {
+    self.val
+}
+```
+
+This can be useful in a couple cases:
+
+* [gas](https://docs.near.org/docs/concepts/gas)-intensive contract methods that need to optimize every detail
+* methods only used in [cross-contract call](https://docs.near.org/docs/tutorials/contracts/cross-contract-calls) logic, where no external consumers are expected or allowed
+
+However, most of the time you will probably want to stick with the default JSON result serialization, to make it easier for apps to interact with your contract.

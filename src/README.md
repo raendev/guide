@@ -1,9 +1,14 @@
-# Introduction
+# Getting Set Up
 
-First go install `raen`, [instructions here](https://raen.dev/docs/guide/installation.html)
+For this tutorial you will need a testnet account.  If you do not have one go [here](https://wallet.testnet.near.org), using the email option is the easiest method for ensuring you can recover your account.
 
-`raen` is a build tool for NEAR smart contracts. 
+`raen` is a build tool for NEAR smart contracts.
 
-Currently it has a `build` command for compiling your contract, generating it's Application Contract Interface (ACI), and injected into a custom section of a contract's WebAssembly (Wasm) binary.
+With RAEN, you can:
 
-It plans on having a `fetch` command for pulling down the ACI of deployed contracts to generate the source code bindings needed for cross contract calls and a client interface needed to interact with contracts.
+* `build`: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's WebAssembly (Wasm) binary.
+* `fetch` _[coming soon]_: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.
+
+To get started, first [install RAEN](https://raen.dev/docs/guide/installation.html).
+
+If you have experience with NEAR and want to get to the RAEN-specific stuff you can skip to the [status message contract](./status-message/wit.md).

@@ -3,7 +3,7 @@ authors = ["Willem Wyndham"]
 language = "en"
 multilingual = false
 src = "src"
-title = "RAEN Guide"
+title = "RAEN|ИƎAЯ"
 
 [output.html]
 git-repository-url = "https://github.com/raendev/guide/tree/master"

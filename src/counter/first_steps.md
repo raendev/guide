@@ -12,10 +12,12 @@ A `struct` in Rust defines a data structure with fields.  You might have seen a 
 ### `val`
 The field `val` is of type `i8`, which, while sounding a bit like a iPhone version, is a signed 8-bit integer meaning it can be between `-128` and `127`.
 
-This means once `val` is incremented to `127`, the next time it will wrap around to be `-128`.
+This means once `val` is incremented to `127`, the next time it will wrap around to be `-128`.[^numbers]
 
 ### `pub`
 
-Lastly, `pub` is short for `public`, meaning that the item is visible outside of the file[^note].
+Lastly, `pub` is short for `public`, meaning that the item is visible outside of the file[^namespaces].
 
-[^note]: Technically it's a module, but that's not important right now.
+[^numbers]: If you want to read a little more about number types, check out [The Rust Book's description](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types).
+
+[^namespaces]: Technically `pub` is a [namespace](https://doc.rust-lang.org/reference/visibility-and-privacy.html), but that's not important right now.

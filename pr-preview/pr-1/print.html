@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">1.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">1.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">1.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">1.3.</strong> Final Code</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Using RAEN</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Status Message</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Update Account State</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">1.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">1.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">1.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">1.3.</strong> Final Code</a></li><li class="chapter-item expanded "><a href="counter/working_with_contract.html"><strong aria-hidden="true">1.4.</strong> Using RAEN</a></li><li class="chapter-item expanded "><a href="counter/admin.html"><strong aria-hidden="true">1.5.</strong> RAEN Admin</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Status Message</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Update Account State</div></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -311,6 +311,50 @@ pub fn get_num(&amp;self) -&gt; i8 {
 <li>methods only used in <a href="https://docs.near.org/docs/tutorials/contracts/cross-contract-calls">cross-contract call</a> logic, where no external consumers are expected or allowed</li>
 </ul>
 <p>However, most of the time you will probably want to stick with the default JSON result serialization, to make it easier for apps to interact with your contract.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="using-raen"><a class="header" href="#using-raen">Using RAEN</a></h2>
+<p>Finally we can get to some action. </p>
+<!-- Add instructions for cloning the examples repo; -->
+<p>From within the <code>rust-contracts</code> directory use the build command:</p>
+<pre><code class="language-bash">raen build --release
+</code></pre>
+<p>or with <code>npm</code> script:</p>
+<pre><code class="language-bash">yarn build
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>
+<pre><code class="language-bash">near dev-delpoy --wasmFile ./target/res/counter_contract.wasm
+</code></pre>
+<p>This will create a new throwaway NEAR account on testnet and deploy the contract to that address.</p>
+<p>Copy this address and head over to https://raen.dev/admin to interact with the contract.</p>
+<p>Like a good cooking show, the contract has already be deployed to <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="using-raen-admin"><a class="header" href="#using-raen-admin">Using RAEN Admin</a></h1>
+<p>Now that your contract has code embedded in it a React form can be created for each contract method.</p>
+<p>Let's look at <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
+<h2 id="view-methods"><a class="header" href="#view-methods">View Methods</a></h2>
+<p>First to notice on the top left you have a login button and a list of the view methods</p>
+<p><img src="counter/images/view.png" alt="View Methods" /></p>
+<p>Clicking on <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> will immediately call the view method since it has no arguments.</p>
+<p>You can also notice that the comment from the code is displayed helping to describe the method.</p>
+<p><img src="counter/images/get_num.png" alt="Get Num" /></p>
+<hr />
+<h2 id="change-methods"><a class="header" href="#change-methods">Change Methods</a></h2>
+<p>Below the View Methods are the change methods which update the contract state.</p>
+<p><img src="counter/images/change.png" alt="Change Calls" /></p>
+<p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Reset"><code>reset</code></a>.</p>
+<p><img src="counter/images/reset.png" alt="reset" /></p>
+<p>Again you can see the comments from the code. However, now there are two new fields in the form. </p>
+<ul>
+<li>
+<p><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in yoctoNear, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</p>
+</li>
+<li>
+<p><code>gas</code> is how much gas to attach to cover the execution costs. It is in units of gas here <code>30 Terra gas</code>, which is more than enough for this transaction.</p>
+</li>
+</ul>
+<p>Clicking on <code>Submit</code> will use the key added from logging in to make the transaction. Since this call doesn't require any NEAR we don't need to personally sign the transaction.</p>
+<p>Returning to <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> you should see that it is now <code>0</code>.</p>
 
                     </main>
 

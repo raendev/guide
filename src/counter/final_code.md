@@ -79,7 +79,7 @@ where
 
  
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:14:38}}
+{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:14:42}}
 ```
 
 In Rust, you can use `//` for regular comments and `///` for [documentation comments](https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments), which will automatically be turned into documentation by various tooling.

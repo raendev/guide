@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
       - name: Install and Build
         run: |
-          git clone --depth 1 --branch v0.0.2 https://github.com/raendev/examples.git --recursive
+          git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
           mkdir bin
           curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.18/mdbook-v0.4.18-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
           ./bin/mdbook build

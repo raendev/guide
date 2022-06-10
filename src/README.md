@@ -9,6 +9,16 @@ With RAEN, you can:
 * `build`: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's WebAssembly (Wasm) binary.
 * `fetch` _[coming soon]_: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.
 
+
+## Install `raen`
+
 To get started, first [install RAEN](https://raen.dev/docs/guide/installation.html).
+## Clone examples for repo (optional)
+
+```bash
+
+git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
+
+```
 
 If you have experience with NEAR and want to get to the RAEN-specific stuff you can skip to the [status message contract](./status-message/wit.md).

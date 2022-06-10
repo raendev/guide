@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">1.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">1.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">1.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">1.3.</strong> Final Code</a></li><li class="chapter-item expanded "><a href="counter/working_with_contract.html"><strong aria-hidden="true">1.4.</strong> Using RAEN</a></li><li class="chapter-item expanded "><a href="counter/admin.html"><strong aria-hidden="true">1.5.</strong> RAEN Admin</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Status Message</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Update Account State</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">1.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">1.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">1.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">1.3.</strong> Final Code</a></li><li class="chapter-item expanded "><a href="counter/working_with_contract.html"><strong aria-hidden="true">1.4.</strong> Using RAEN</a></li><li class="chapter-item expanded "><a href="counter/admin.html"><strong aria-hidden="true">1.5.</strong> RAEN Admin</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intro.html"><strong aria-hidden="true">2.</strong> Status Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/simple/simple.html"><strong aria-hidden="true">2.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="status-message/simple/methods.html"><strong aria-hidden="true">2.2.</strong> Contract Methods</a></li><li class="chapter-item expanded "><a href="status-message/simple/admin.html"><strong aria-hidden="true">2.3.</strong> Set & Get Status</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intermediate/addding_message.html"><strong aria-hidden="true">3.</strong> Intermediate Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/intermediate/methods.html"><strong aria-hidden="true">3.1.</strong> Updating Methods</a></li><li class="chapter-item expanded "><a href="status-message/intermediate/admin.html"><strong aria-hidden="true">3.2.</strong> Set & Get Status Part 2</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/advanced/intro.html"><strong aria-hidden="true">4.</strong> Advanced Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/advanced/witgen.html"><strong aria-hidden="true">4.1.</strong> Using witgen</a></li><li class="chapter-item expanded "><a href="status-message/advanced/admin.html"><strong aria-hidden="true">4.2.</strong> Set & Get Status Part 3</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Expert Message</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,7 +146,13 @@
 <li><code>build</code>: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's WebAssembly (Wasm) binary.</li>
 <li><code>fetch</code> <em>[coming soon]</em>: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.</li>
 </ul>
+<h2 id="install-raen"><a class="header" href="#install-raen">Install <code>raen</code></a></h2>
 <p>To get started, first <a href="https://raen.dev/docs/guide/installation.html">install RAEN</a>.</p>
+<h2 id="clone-examples-for-repo-optional"><a class="header" href="#clone-examples-for-repo-optional">Clone examples for repo (optional)</a></h2>
+<pre><code class="language-bash">
+git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
+
+</code></pre>
 <p>If you have experience with NEAR and want to get to the RAEN-specific stuff you can skip to the <a href="./status-message/wit.html">status message contract</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-counter-example"><a class="header" href="#basic-counter-example">Basic Counter Example</a></h1>
 <p>At its core the NEAR blockchain is a big database.  A contract is a program with its own storage space. You have access to read and write to this storage like you would any key/value data structure.</p>
@@ -194,9 +200,10 @@
 <pre><code class="language-rust noplayground ignore">impl Counter {
   ...
 
-    pub fn increment(&amp;mut self) {
+    pub fn increment(&amp;mut self) -&gt; i8 {
         self.val += 1;
         log!(&quot;Increased number to {}&quot;, self.val);
+        self.val
     }
   
   ...
@@ -279,23 +286,27 @@ impl Counter {
     }
 
     /// Public method: Increment the counter.
-    pub fn increment(&amp;mut self) {
+    pub fn increment(&amp;mut self) -&gt; i8 {
         self.val += 1;
         log!(&quot;Increased number to {}&quot;, self.val);
+        self.val
     }
 
     /// Public method: Decrement the counter.
-    pub fn decrement(&amp;mut self) {
+    pub fn decrement(&amp;mut self) -&gt; i8 {
         self.val -= 1;
         log!(&quot;Decreased number to {}&quot;, self.val);
+        self.val
     }
 
     /// Public method - Reset to zero.
-    pub fn reset(&amp;mut self) {
+    pub fn reset(&amp;mut self) -&gt; i8 {
         self.val = 0;
         log!(&quot;Reset counter to zero&quot;);
+        self.val
     }
 }
+
 </code></pre>
 <p>In Rust, you can use <code>//</code> for regular comments and <code>///</code> for <a href="https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments">documentation comments</a>, which will automatically be turned into documentation by various tooling.</p>
 <h2 id="digging-deeper"><a class="header" href="#digging-deeper">Digging deeper</a></h2>
@@ -355,6 +366,178 @@ pub fn get_num(&amp;self) -&gt; i8 {
 </ul>
 <p>Clicking on <code>Submit</code> will use the key added from logging in to make the transaction. Since this call doesn't require any NEAR we don't need to personally sign the transaction.</p>
 <p>Returning to <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> you should see that it is now <code>0</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="basic-status-message-contract"><a class="header" href="#basic-status-message-contract">Basic Status Message Contract</a></h1>
+<p>Previously the contract had state that was shared by any account that can call the contract. Next we will show how each account can get its own state within the contract.</p>
+<h2 id="signer-account"><a class="header" href="#signer-account">Signer Account</a></h2>
+<p>All change calls need to be signed by an account, this proves that no other account made the transaction. From the contract's perspective, when executing it has access to the current context which includes the <code>signer</code> account id.</p>
+<p>Since this account id is unique to the signer it can be used as a key in storage. Let's take a look.</p>
+<h3 id="env-accountid-and-lookupmap"><a class="header" href="#env-accountid-and-lookupmap"><code>env</code>, <code>AccountId</code>, and <code>LookupMap</code></a></h3>
+<pre><code class="language-rust noplayground ignore">use near_sdk::{
+    borsh::{self, BorshDeserialize, BorshSerialize},
+    collections::LookupMap,
+    env, near_bindgen, AccountId,
+};
+
+</code></pre>
+<p><code>env</code> provides functions for interacting with the NEAR blockchain. This includes <code>env::signer_account_id()</code>, which as you expect returns the account id of the signer.</p>
+<p><code>AccountId</code> is a wrapper type around <code>String</code>. Using it ensures that you won't use a malformed account id.</p>
+<p><code>LookupMap</code> is our first experience with a persistent data structure. You can think of them like corresponding data structures that have their data in storage. In this case <code>LookupMap</code> is like a <code>HashMap</code>, but the keys are contract storage keys and values are written to storage.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contract-state"><a class="header" href="#contract-state">Contract State</a></h1>
+<p>Let's take a look at the struct that defines the contract:</p>
+<pre><code class="language-rust noplayground ignore">#[near_bindgen]
+#[derive(BorshDeserialize, BorshSerialize)]
+pub struct StatusMessage {
+    records: LookupMap&lt;AccountId, String&gt;,
+}
+</code></pre>
+<p>This struct has one field <code>records</code>; a <code>LookupMap</code> that maps <code>AccountId</code>s to <code>String</code>s.</p>
+<p>You will also notice that this contract doesn't implement <code>Default</code>. This is because we are going to implement it ourselves!</p>
+<pre><code class="language-rust noplayground ignore">impl Default for StatusMessage {
+    fn default() -&gt; Self {
+        Self {
+            records: LookupMap::new(b&quot;r&quot;),
+        }
+    }
+}
+</code></pre>
+<p>This is how you create an implementation that fulfills a trait. In this case there is one function, <code>default</code>, which returns <code>Self</code>, which is a shorthand for the type implementing the trait, in this case <code>StatusMessage</code>.</p>
+<p>When the contract executions it first loads the contract's state from storage. If no state exists it calls <code>StatusMessage::default()</code> to get the initial instance.</p>
+<h1 id="new"><a class="header" href="#new"><code>new</code></a></h1>
+<p>You might be familiar with constructors in other languages. Rust has no concept of a constructor, but it is common to have a function called <code>new</code> to create an instance of a type.</p>
+<p>In this case, <code>LookupMap::new(b&quot;r&quot;)</code> creates a new <code>LookupMap</code>. <code>b&quot;r&quot;</code> is byte representation of the string <code>&quot;r&quot;</code>, which is used as a prefix before any keys. For example, <code>eve.testnet</code> --&gt; <code>reve.testnet</code>.  This creates a namespace for this data structure as long as this prefix is unique.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contract-methods"><a class="header" href="#contract-methods">Contract Methods</a></h1>
+<p>In this case we will just have two methods, <code>set_status</code> and <code>get_status</code>.</p>
+<h2 id="set_status"><a class="header" href="#set_status"><code>set_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn set_status(&amp;mut self, message: String) {
+        let account_id = env::signer_account_id();
+        self.records.insert(&amp;account_id, &amp;message);
+    }
+</code></pre>
+<p>Unlike the counter this method takes an argument, <code>meassage</code> which is a <code>String</code>. This message is then inserted into the map, which writes it to storage. You'll notice a <code>&amp;</code>, <a href="status-message/simple/../../counter/impl.html#self">which learned about in the previous chapter</a>, this is how we pass a reference to <code>insert</code>, which will then be able to read the <code>String</code> to write it to storage.</p>
+<h2 id="get_status"><a class="header" href="#get_status"><code>get_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn get_status(&amp;self, account_id: String) -&gt; Option&lt;String&gt; {
+        self.records.get(&amp;account_id.parse().unwrap())
+    }
+</code></pre>
+<p>Here is our first example of an <code>Option</code> type. An Option is other some value or nothing, <code>Option::Some(value), Option::None</code>. This is the same as <code>null</code> in other languages. <code>records.get</code> will return <code>None</code> if the account was not in the map. This function will then return <code>None</code>.</p>
+<p>We also need to convert the string <code>account_id</code> to an <code>AccountId</code>. There is a <code>parse</code> method, which returns will potentially fail if the <code>account_id</code> is invalid. In rust this is a <code>Result</code>, which either has a value or an error. <code>unwrap</code> let's us access the value and will panic and exit if there was an error.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-a-blank-status"><a class="header" href="#getting-a-blank-status">Getting a blank status</a></h1>
+<p>Let's return to the admin panel this time for <code>simple.statusmessage.raendev.testnet</code>.</p>
+<p>First, let's try getting the status message for an account that definitely won't have one.  We should get back <code>null</code>, JavaScript's version of <code>Option::None</code>. This</p>
+<p>Use the following link:</p>
+<p><a href="https://raen.dev/admin/#/simple.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522aa%2522%257D%257D"><code>raen.dev/admin/#/simple.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522aa%2522%257D%257D</code></a></p>
+<p>You'll notice that the link has some extra args at the end. This is the form data that will automatically fill in the form and since this is a view method it execute the call immediately.</p>
+<h2 id="setting-a-status"><a class="header" href="#setting-a-status">Setting a status</a></h2>
+<p><a href="https://raen.dev/admin/#/simple.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/simple.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<p>Next, return to <a href="https://raen.dev/admin/#/simple.statusmessage.raendev.testnet/GetStatus"><code>get_status</code></a>, but this time with your own testnet account.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-a-new-message-struct"><a class="header" href="#adding-a-new-message-struct">Adding a new <code>Message</code> struct</a></h1>
+<p>We just say how to make a message that was a <code>String</code>, but that is a little boring. Let's make a <code>Message</code> with a body and a title.</p>
+<pre><code class="language-rust noplayground ignore">pub struct Message {
+    title: String,
+    body: String,
+}
+</code></pre>
+<p>Next we need to update contract's state struct.</p>
+<pre><code class="language-rust noplayground ignore">pub struct StatusMessage {
+    records: LookupMap&lt;AccountId, Message&gt;,
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="updating-the-methods"><a class="header" href="#updating-the-methods">Updating the Methods</a></h1>
+<p>Now we need to update our methods so that we can pass two <code>String</code>s instead of just one.</p>
+<h2 id="set_status-1"><a class="header" href="#set_status-1"><code>set_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn set_status(&amp;mut self, title: String, body: String) {
+        let account_id = env::signer_account_id();
+        self.records.insert(&amp;account_id, &amp;Message { title, body });
+    }
+</code></pre>
+<p>One thing to note is <code>Message { title, body }</code>, this is how you can directly create a message without using a <code>new</code> function like we saw earlier.</p>
+<h2 id="get_status-1"><a class="header" href="#get_status-1"><code>get_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn get_status(&amp;self, account_id: AccountId) -&gt; Option&lt;String&gt; {
+        self.records
+            .get(&amp;account_id)
+            .map(|Message { body, title }| format!(r#&quot;{{&quot;body&quot;:&quot;{body}&quot;, &quot;title&quot;: &quot;{title}&quot;}}&quot;#))
+    }
+</code></pre>
+<p>Before <code>account_id</code> was a <code>String</code>, but now we can use <code>AccountId</code> directly which will panic the contract if the account id is not valid.</p>
+<p>Next we have a new function <a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.map">map</a>, which is a method <code>Option</code>. And a new syntax <code>|Message { body, title}|</code>. </p>
+<p><code>map</code> is a function takes a function as argument. Then if the Option is not <code>None</code> it will pass the inner value to the function. In Rust an anonymous rust has the following syntax, <code>|x| x + 1</code>, if you are familiar with JavaScript it is like an arrow function <code>(x) =&gt; x + 1</code>.</p>
+<p>Rust let's you ~destructure~ the argument passed to the function.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>|Message { body, title }| format!(r#&quot;{{&quot;body&quot;:&quot;{body}&quot;, &quot;title&quot;: &quot;{title}&quot;}}&quot;#))
+
+// Is the same as the function
+|msg| {
+  let body = msg.body;
+  let title = msg.title;
+  format!(r#&quot;{{&quot;body&quot;:&quot;{body}&quot;, &quot;title&quot;: &quot;{title}&quot;}}&quot;#)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>Lastly, we are creating a String that represents the JSON representation of <code>Message</code>, later we won't have to do this by hand.</p>
+<p><code>format!</code> is a macro for injecting strings into another in this case <code>{body}</code> and <code>{title}</code> are replaced by the corresponding variables.</p>
+<p><code>r#&quot;..&quot;#</code> is called a raw string, which let's us use a <code>&quot;</code> from within the string. And we need two <code>{{</code> and <code>}}</code> so that <code>format!</code> understands that it's actually a <code>{</code> or <code>}</code> in the <code>String</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="admin-round-two"><a class="header" href="#admin-round-two">Admin Round Two</a></h1>
+<p>Let's return to the admin panel this time for <code>intermediate.statusmessage.raendev.testnet</code>.</p>
+<h2 id="setting-a-status-1"><a class="header" href="#setting-a-status-1">Setting a status</a></h2>
+<p>Now there will two input boxes in the form:</p>
+<p><a href="https://raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<h2 id="get-status-message"><a class="header" href="#get-status-message">Get Status Message</a></h2>
+<p>Here is an example for eve.testnet:</p>
+<p><a href="https://raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522eve.testnet%2522%257D%257D">https://raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522eve.testnet%2522%257D%257D</a></p>
+<p>Now the status should return a <code>String</code> of the JSON like</p>
+<pre><code class="language-json">&quot;{\&quot;title\&quot;: \&quot;hello\&quot;, \&quot;body\&quot;: \&quot;world\&quot;}&quot;
+</code></pre>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next steps</a></h2>
+<p>Now let's take this a step further and use <code>Message</code> directly.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-message"><a class="header" href="#advanced-message">Advanced Message</a></h1>
+<p>Having to pass two arguments to create the Message is annoying, why not pass the Message directly!</p>
+<p>First let's add some documentation to the struct:</p>
+<pre><code class="language-rust noplayground ignore">/// A simple message with a title
+#[derive(BorshDeserialize, BorshSerialize, Deserialize, Serialize)]
+#[serde(crate = &quot;near_sdk::serde&quot;)]
+#[witgen]
+pub struct Message {
+    /// Title that describes the message
+    title: String,
+    /// body of the  message
+    body: String,
+}
+</code></pre>
+<p><code>Deserialize</code> and <code>Serialize</code> are now needed to allow the <code>Message</code> to be parsed to and from JSON.</p>
+<h2 id="update-methods"><a class="header" href="#update-methods">Update methods</a></h2>
+<pre><code class="language-rust noplayground ignore">#[near_bindgen]
+impl StatusMessage {
+    pub fn set_status(&amp;mut self, message: Message) {
+        let account_id = env::signer_account_id();
+        self.records.insert(&amp;account_id, &amp;message);
+    }
+
+    pub fn get_status(&amp;self, account_id: AccountId) -&gt; Option&lt;Message&gt; {
+        self.records.get(&amp;account_id)
+    }
+}
+</code></pre>
+<p>Now we have <code>Message</code> as a argument to <code>set_status</code> and don't need to convert <code>Message</code> manually when returning it from <code>get_status</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="witgen"><a class="header" href="#witgen"><code>witgen</code></a></h1>
+<p>We just breezed by the following line:</p>
+<pre><code class="language-rust noplayground ignore">#[witgen]
+</code></pre>
+<p><code>witgen</code> is a special macro needed generate a type definition for user made types like <code>Message</code>.</p>
+<p>We also skipped the line that imported the macro:</p>
+<pre><code class="language-rust noplayground ignore">use witgen::witgen;
+</code></pre>
+<p>The <a href="https://github.com/bnjjj/witgen">witgen</a> crate is</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="admin-round-three"><a class="header" href="#admin-round-three">Admin Round Three</a></h1>
+<p>Let's return to setting a message and see what's different.</p>
+<p><a href="https://raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<p>Here is where raen really raen really shines.</p>
+<p>The method's documentation and the types documentation are available.  You can think of this as interactive documentation.</p>
+<h2 id="getting-status"><a class="header" href="#getting-status">Getting Status</a></h2>
+<p>Next since we are using <code>AccountId</code> the type is available to the form. Meaning the the form can validate an account id before submitting it, preventing the call from failing on the NEAR node:</p>
+<p><a href="https://raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<p>You will also notice that now we don't get a string but a JSON object.</p>
 
                     </main>
 

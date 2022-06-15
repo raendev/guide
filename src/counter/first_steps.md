@@ -7,12 +7,10 @@ First the contract's state, what will be written to storage, needs to be defined
 ```
 
 ### `struct`
-A `struct` in Rust defines a data structure with fields.  You might have seen a class or an object in JS. Unlike other languages, the data structure has no methods attached to it, rather it just defines the shape.
+A `struct` in Rust defines a data structure with fields, similar to a class, object, Hash, or Dictionary in other languages.
 
 ### `val`
-The field `val` is of type `i8`, which, while sounding a bit like a iPhone version, is a signed 8-bit integer meaning it can be between `-128` and `127`.
-
-This means once `val` is incremented to `127`, the next time it will wrap around to be `-128`.[^numbers]
+The field `val` is of type `i8`[^numbers], which, while sounding a bit like a iPhone version, is a signed 8-bit integer. This means it can be between `-128` and `127`. Without [overflow checks](https://doc.rust-lang.org/cargo/reference/profiles.html#overflow-checks) enabled, if `val` is currently `127`, the next time it is incremented it will wrap around to be `-128`.
 
 ### `pub`
 

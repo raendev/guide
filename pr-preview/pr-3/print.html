@@ -347,20 +347,20 @@ pub fn get_num(&amp;self) -&gt; i8 {
 <p>Now that your RAEN-built contract provides interface information, <a href="https://raen.dev/admin">RAEN Admin</a> can use it to generate a complete interactive form.</p>
 <p>If you followed along and published your own contract, enter its address in RAEN Admin. Otherwise, you can follow along with <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
 <h2 id="view-methods"><a class="header" href="#view-methods">View Methods</a></h2>
-<p>First to notice on the top left you have a login button and a list of the view methods</p>
+<p>First, notice on the top left that you have a login button and a list of view methods</p>
 <p><img src="counter/images/view.png" alt="View Methods" /></p>
 <p>Clicking on <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> will immediately call the view method since it has no arguments.</p>
 <p>You can also notice that the comment from the code is displayed helping to describe the method.</p>
 <p><img src="counter/images/get_num.png" alt="Get Num" /></p>
 <hr />
 <h2 id="change-methods"><a class="header" href="#change-methods">Change Methods</a></h2>
-<p>Below the View Methods are the Change Methods which update contract state.</p>
+<p>Below View Methods, you'll see Change Methods.</p>
 <p><img src="counter/images/change.png" alt="Change Calls" /></p>
 <p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Reset"><code>reset</code></a>.</p>
 <p><img src="counter/images/reset.png" alt="reset" /></p>
 <p>Again you can see the comments from the code. However, now there are two new fields in the form. </p>
 <ul>
-<li><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in yoctoNear, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</li>
+<li><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in <a href="https://www.nanotech-now.com/metric-prefix-table.htm">yocto</a>Near, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</li>
 <li><code>gas</code> is how much gas to attach to cover the execution costs. It is in <a href="https://docs.near.org/docs/concepts/gas">units of gas</a>, here 30 <a href="https://www.nanotech-now.com/metric-prefix-table.htm">Tera</a>Gas—more than enough for this transaction.</li>
 </ul>
 <p>You will need to sign in to submit this form. If you don't have a NEAR <a href="https://docs.near.org/docs/concepts/networks#testnet">testnet</a> account, NEAR Wallet will guide you through creating one.</p>
@@ -373,9 +373,9 @@ pub fn get_num(&amp;self) -&gt; i8 {
 <li>
 <p>NEAR Wallet adds a new <a href="https://docs.near.org/docs/concepts/access-keys">FunctionCall Access Key</a> to your account. You can see this listed in the &quot;Recent activity&quot; section on <a href="https://wallet.testnet.near.org">wallet.testnet.near.org</a>. In a nutshell:</p>
 <ul>
-<li>this key can ONLY make calls to the <code>counter.raendev.testnet</code> contract (or your version of it)</li>
-<li>this key has an allowance of <strong>0.25 NEAR</strong> that it can spend on transaction fees on your behalf. If you use RAEN Admin for long enough to exhaust this allowance, every call to a Change Method will start redirecting to NEAR Wallet.</li>
-<li>if a transaction has an <code>attachedDeposit</code>, no matter how small, it WILL require explicit user confirmation.</li>
+<li>This key can ONLY make calls to the <code>counter.raendev.testnet</code> contract (or your version of it)</li>
+<li>This key has an allowance of <strong>0.25 NEAR</strong> that it can spend on transaction fees on your behalf. If you use RAEN Admin for long enough to exhaust this allowance, every call to a Change Method will start redirecting to NEAR Wallet.</li>
+<li>If a transaction has an <code>attachedDeposit</code>, no matter how small, it WILL require explicit user confirmation.</li>
 </ul>
 </li>
 <li>

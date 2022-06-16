@@ -27,7 +27,7 @@ This creates a new [Wasm](https://webassembly.org/) binary file in `./target/res
 ## Deploying
 
 ```bash
-near dev-delpoy --wasmFile ./target/res/counter_contract.wasm
+near dev-deploy --wasmFile ./target/res/counter_contract.wasm
 ```
 
 This will create a new throwaway NEAR account on testnet and deploy the contract to that address.

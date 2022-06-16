@@ -7,7 +7,7 @@ If you followed along and published your own contract, enter its address in RAEN
 
 ## View Methods
 
-First to notice on the top left you have a login button and a list of the view methods
+First, notice on the top left that you have a login button and a list of view methods
 
 ![View Methods](images/view.png)
 
@@ -22,7 +22,7 @@ You can also notice that the comment from the code is displayed helping to descr
 
 ## Change Methods
 
-Below the View Methods are the Change Methods which update contract state.
+Below View Methods, you'll see Change Methods.
 
 ![Change Calls](images/change.png)
 
@@ -34,7 +34,7 @@ Let's pick [`reset`](https://raen.dev/admin/#/counter.raendev.testnet/Reset).
 
 Again you can see the comments from the code. However, now there are two new fields in the form. 
 
-- `attachedDeposit` is how much near you want to attach to the transaction; it is in yoctoNear, which is the smallest unit of NEAR (`1N = 1000000000000000000000000 yN` or `10^24`).
+- `attachedDeposit` is how much near you want to attach to the transaction; it is in [yocto](https://www.nanotech-now.com/metric-prefix-table.htm)Near, which is the smallest unit of NEAR (`1N = 1000000000000000000000000 yN` or `10^24`).
 - `gas` is how much gas to attach to cover the execution costs. It is in [units of gas](https://docs.near.org/docs/concepts/gas), here 30 [Tera](https://www.nanotech-now.com/metric-prefix-table.htm)Gas—more than enough for this transaction.
 
 You will need to sign in to submit this form. If you don't have a NEAR [testnet](https://docs.near.org/docs/concepts/networks#testnet) account, NEAR Wallet will guide you through creating one.
@@ -50,9 +50,9 @@ NEAR prioritizes both developer and user experience. One way it accomplishes goo
 Here is what actually happens when you sign in with NEAR:
 
 - NEAR Wallet adds a new [FunctionCall Access Key](https://docs.near.org/docs/concepts/access-keys) to your account. You can see this listed in the "Recent activity" section on [wallet.testnet.near.org](https://wallet.testnet.near.org). In a nutshell:
-  - this key can ONLY make calls to the `counter.raendev.testnet` contract (or your version of it)
-  - this key has an allowance of **0.25 NEAR** that it can spend on transaction fees on your behalf. If you use RAEN Admin for long enough to exhaust this allowance, every call to a Change Method will start redirecting to NEAR Wallet.
-  - if a transaction has an `attachedDeposit`, no matter how small, it WILL require explicit user confirmation.
+  - This key can ONLY make calls to the `counter.raendev.testnet` contract (or your version of it)
+  - This key has an allowance of **0.25 NEAR** that it can spend on transaction fees on your behalf. If you use RAEN Admin for long enough to exhaust this allowance, every call to a Change Method will start redirecting to NEAR Wallet.
+  - If a transaction has an `attachedDeposit`, no matter how small, it WILL require explicit user confirmation.
 
 - NEAR Wallet redirects to the previous URL at `raen.dev/admin`, adding some extra URL parameters with information about this new Access Key.
 

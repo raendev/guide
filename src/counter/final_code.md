@@ -28,14 +28,14 @@ This is the real magic of `near-sdk`.  Like `log` it is a macro, but generates c
 
 `near_bindgen` here means that the contract's state comes from this struct.
 
-`derive` is a built in macro. Each item passed to `derive` is a [trait](https://doc.rust-lang.org/stable/book/ch10-02-traits.html):
+`derive` is a built-in macro. Each item passed to `derive` is a [trait](https://doc.rust-lang.org/stable/book/ch10-02-traits.html):
 
 * The `Default` trait has a single `default` method, which returns a default instance of a type.
 * `BorshDeserialize` generates a `deserialize` method, so contract state can be read from storage.
 * `BorshSerialize` generates a `serialize` method, so contract state can be written to storage.
 
 <details>
-<summary>If you're interested, expand this section to see the code the above `derive` macro will generate.</summary>
+<summary>Expand this section to see the code the above <code>derive</code> macro will generate.</summary>
 
 ```rust,noplayground,ignore
 

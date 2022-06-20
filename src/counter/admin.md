@@ -14,7 +14,7 @@ First, notice on the top left that you have a login button and a list of view me
 
 Clicking on [`get_num`](https://raen.dev/admin/#/counter.raendev.testnet/GetNum) will immediately call the view method since it has no arguments.
 
-You can also notice that the comment from the code is displayed helping to describe the method.
+You can also notice that the comment from the code is displayed, helping to describe the method.
 
 ![Get Num](images/get_num.png)
 

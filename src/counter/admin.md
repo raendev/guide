@@ -37,7 +37,7 @@ Again you can see the comments from the code. However, now there are two new fie
 - `attachedDeposit` is how much near you want to attach to the transaction; it is in [yocto](https://en.wikipedia.org/wiki/Yocto-)Near, which is the smallest unit of NEAR (`1N = 1000000000000000000000000 yN` or `10^24`).
 - `gas` is how much gas to attach to cover the execution costs. It is in [units of gas](https://docs.near.org/docs/concepts/gas), here 30 [Tera](https://www.nanotech-now.com/metric-prefix-table.htm)Gas—more than enough for this transaction.
 
-You will need to sign in to submit this form. If you don't have a NEAR [testnet](https://docs.near.org/docs/concepts/networks#testnet) account, NEAR Wallet will guide you through creating one.
+You will need to sign in to submit this form. If you don't have a NEAR [testnet](https://docs.near.org/docs/concepts/networks#testnet) account, NEAR Wallet will guide you through creating one. Pro tip: select Email Recovery. It's plenty safe for testnet, and will greatly simplify recovering your account and using it in multiple browsers.
 
 Once you sign in and submit the `reset` form, you can revisit [`get_num`](https://raen.dev/admin/#/counter.raendev.testnet/GetNum) and see that it is now `0` (unless someone else already changed it again).
 

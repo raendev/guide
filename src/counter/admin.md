@@ -45,7 +45,7 @@ Once you sign in and submit the `reset` form, you can revisit [`get_num`](https:
 
 If you're used to Ethereum apps, you may be surprised that submitting the `reset` form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.
 
-NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: [negligible and predictable transaction fees](https://docs.near.org/docs/concepts/gas). And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?
+NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: [negligible and predictable transaction fees](https://docs.near.org/docs/concepts/gas), also called _gas_ fees. And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?
 
 Here is what actually happens when you sign in with NEAR:
 

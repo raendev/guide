@@ -29,7 +29,7 @@ The ampersand (`&`) means that the `get_num` function _borrows_ `self`, rather t
 
 ### `-> i8`
 
-This is the return type of the method, here an signed 8-bit integer, the same as `val`.
+The return type of the method. A signed 8-bit integer, matching `val`.
 
 ### `self.val`
 

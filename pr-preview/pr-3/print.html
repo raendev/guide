@@ -200,7 +200,7 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <p>This is a reference to the <code>Counter</code> struct. This lets you access the fields on the struct, however, it is <em>immutable</em> meaning that you cannot change or &quot;mutate&quot; the field.</p>
 <p>The ampersand (<code>&amp;</code>) means that the <code>get_num</code> function <em>borrows</em> <code>self</code>, rather than taking <em>ownership</em> of <code>self</code>. To feel confident with Rust, you will need to <a href="https://doc.rust-lang.org/stable/book/ch04-00-understanding-ownership.html">understand borrowing and ownership</a>. For now, pay attention to when this guide uses or omits the ampersand on variable names, and rely on Rust's industry-leading error messages to help you figure out if and when you need an ampersand in your own code.</p>
 <h3 id="--i8"><a class="header" href="#--i8"><code>-&gt; i8</code></a></h3>
-<p>This is the return type of the method, here an signed 8-bit integer, the same as <code>val</code>.</p>
+<p>The return type of the method. A signed 8-bit integer, matching <code>val</code>.</p>
 <h3 id="selfval"><a class="header" href="#selfval"><code>self.val</code></a></h3>
 <p>This accesses the field <code>val</code>. You will also notice that there is no <code>return</code> statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.</p>
 <h2 id="a-change-method"><a class="header" href="#a-change-method">A change method</a></h2>

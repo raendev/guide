@@ -3,14 +3,13 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Using RAEN - RAEN|ИƎAЯ</title>
+        <title>Using RAEN - RAEN Guide</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
@@ -104,7 +103,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">RAEN|ИƎAЯ</h1>
+                    <h1 class="menu-title">RAEN Guide</h1>
 
                     <div class="right-buttons">
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -141,7 +140,7 @@
                 <div id="content" class="content">
                     <main>
                         <h2 id="using-raen"><a class="header" href="#using-raen">Using RAEN</a></h2>
-<p>Finally we can get to some action. </p>
+<p>Now we can finally use RAEN to build our contract!</p>
 <!-- Add instructions for cloning the examples repo; -->
 <p>From within the <code>rust-contracts</code> directory use the build command:</p>
 <pre><code class="language-bash">raen build --release
@@ -152,11 +151,12 @@
 <p>or</p>
 <pre><code class="language-bash">npm run build
 </code></pre>
+<p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're unaccustomed to considering server-side code size, it's time to start building a new habit. Blockchains are space-constrained, and you'll need to pay for <a href="https://docs.near.org/docs/concepts/storage-staking">storage costs</a>.)</p>
 <h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>
-<pre><code class="language-bash">near dev-delpoy --wasmFile ./target/res/counter_contract.wasm
+<pre><code class="language-bash">near dev-deploy --wasmFile ./target/res/counter_contract.wasm
 </code></pre>
 <p>This will create a new throwaway NEAR account on testnet and deploy the contract to that address.</p>
-<p>Copy this address and head over to https://raen.dev/admin to interact with the contract.</p>
+<p>Copy this address and head over to <a href="https://raen.dev/admin">raen.dev/admin</a> to interact with the contract.</p>
 <p>Like a good cooking show, the contract has already be deployed to <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
 
                     </main>

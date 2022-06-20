@@ -3,14 +3,13 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Defining the data - RAEN|ИƎAЯ</title>
+        <title>Defining the data - RAEN Guide</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
@@ -104,7 +103,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">RAEN|ИƎAЯ</h1>
+                    <h1 class="menu-title">RAEN Guide</h1>
 
                     <div class="right-buttons">
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -147,14 +146,13 @@
 }
 </code></pre>
 <h3 id="struct"><a class="header" href="#struct"><code>struct</code></a></h3>
-<p>A <code>struct</code> in Rust defines a data structure with fields.  You might have seen a class or an object in JS. Unlike other languages, the data structure has no methods attached to it, rather it just defines the shape.</p>
+<p>A <code>struct</code> in Rust defines a data structure with fields, similar to a class, object, Hash, or Dictionary in other languages.</p>
 <h3 id="val"><a class="header" href="#val"><code>val</code></a></h3>
-<p>The field <code>val</code> is of type <code>i8</code>, which, while sounding a bit like a iPhone version, is a signed 8-bit integer meaning it can be between <code>-128</code> and <code>127</code>.</p>
-<p>This means once <code>val</code> is incremented to <code>127</code>, the next time it will wrap around to be <code>-128</code>.<sup class="footnote-reference"><a href="#numbers">1</a></sup></p>
+<p>The field <code>val</code> is of type <code>i8</code><sup class="footnote-reference"><a href="#numbers">1</a></sup>, which, while sounding a bit like a iPhone version, is a signed 8-bit integer. This means it can be between <code>-128</code> and <code>127</code>. Without <a href="https://doc.rust-lang.org/cargo/reference/profiles.html#overflow-checks">overflow checks</a> enabled, if <code>val</code> is currently <code>127</code>, the next time it is incremented it will wrap around to be <code>-128</code>.</p>
 <h3 id="pub"><a class="header" href="#pub"><code>pub</code></a></h3>
 <p>Lastly, <code>pub</code> is short for <code>public</code>, meaning that the item is visible outside of the file<sup class="footnote-reference"><a href="#namespaces">2</a></sup>.</p>
 <div class="footnote-definition" id="numbers"><sup class="footnote-definition-label">1</sup>
-<p>If you want to read a little more about number types, check out <a href="https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types">The Rust Book's description</a>.</p>
+<p>If you want to read more about number types, check out <a href="https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types">The Rust Book's description</a>.</p>
 </div>
 <div class="footnote-definition" id="namespaces"><sup class="footnote-definition-label">2</sup>
 <p>Technically <code>pub</code> is a <a href="https://doc.rust-lang.org/reference/visibility-and-privacy.html">namespace</a>, but that's not important right now.</p>

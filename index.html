@@ -3,14 +3,13 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - RAEN|ИƎAЯ</title>
+        <title>Introduction - RAEN Guide</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
@@ -104,7 +103,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">RAEN|ИƎAЯ</h1>
+                    <h1 class="menu-title">RAEN Guide</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -140,22 +139,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="getting-set-up"><a class="header" href="#getting-set-up">Getting Set Up</a></h1>
-<p>For this tutorial you will need a testnet account.  If you do not have one go <a href="https://wallet.testnet.near.org">here</a>, using the email option is the easiest method for ensuring you can recover your account.</p>
-<p><code>raen</code> is a build tool for NEAR smart contracts.</p>
+                        <h1 id="welcome-to-raen-"><a class="header" href="#welcome-to-raen-">Welcome to RAEN 🌧</a></h1>
+<p>RAEN is a build tool for NEAR smart contracts.</p>
 <p>With RAEN, you can:</p>
 <ul>
-<li><code>build</code>: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's WebAssembly (Wasm) binary.</li>
+<li><code>build</code>: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's <a href="https://webassembly.org/">WebAssembly</a> (Wasm) binary.</li>
 <li><code>fetch</code> <em>[coming soon]</em>: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.</li>
 </ul>
-<h2 id="install-raen"><a class="header" href="#install-raen">Install <code>raen</code></a></h2>
-<p>To get started, first <a href="https://raen.dev/docs/guide/installation.html">install RAEN</a>.</p>
-<h2 id="clone-examples-for-repo-optional"><a class="header" href="#clone-examples-for-repo-optional">Clone examples for repo (optional)</a></h2>
-<pre><code class="language-bash">
-git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
-
+<p>NEAR works with any programming language that compiles to Wasm, but the most advanced NEAR SDK and documentation currently exist <a href="https://www.near-sdk.io/">for Rust</a>.</p>
+<p>RAEN, too, is built around a <a href="https://github.com/bytecodealliance/wit-bindgen">language-agnostic standard</a>, but currently only works with contracts written in <a href="https://www.rust-lang.org/">Rust</a>.</p>
+<p>This guide will introduce you to NEAR, Rust, and RAEN.</p>
+<h3 id="about-the-name"><a class="header" href="#about-the-name">About the name</a></h3>
+<p>&quot;RAEN&quot; is &quot;NEAR&quot; spelled backwards. It is pronounced the same as &quot;rain&quot;.</p>
+<h1 id="getting-set-up"><a class="header" href="#getting-set-up">Getting Set Up</a></h1>
+<p><a href="https://raen.dev/docs/guide/installation.html">Install RAEN</a>, then clone the examples repository to follow along:</p>
+<pre><code class="language-bash">git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
 </code></pre>
-<p>If you have experience with NEAR and want to get to the RAEN-specific stuff you can skip to the <a href="./status-message/wit.html">status message contract</a>.</p>
+<!--
+TODO: link to Status Message: Expert once it's complete
+
+If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Message Expert](./status-message/expert/intro.md).
+-->
 
                     </main>
 

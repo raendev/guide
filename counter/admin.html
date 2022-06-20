@@ -3,14 +3,13 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>RAEN Admin - RAEN|ИƎAЯ</title>
+        <title>RAEN Admin - RAEN Guide</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
@@ -104,7 +103,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">RAEN|ИƎAЯ</h1>
+                    <h1 class="menu-title">RAEN Guide</h1>
 
                     <div class="right-buttons">
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -141,31 +140,47 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="using-raen-admin"><a class="header" href="#using-raen-admin">Using RAEN Admin</a></h1>
-<p>Now that your contract has code embedded in it a React form can be created for each contract method.</p>
-<p>Let's look at <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
+<p>Now that your RAEN-built contract provides interface information, <a href="https://raen.dev/admin">RAEN Admin</a> can use it to generate a complete interactive form.</p>
+<p>If you followed along and published your own contract, enter its address in RAEN Admin. Otherwise, you can follow along with <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
 <h2 id="view-methods"><a class="header" href="#view-methods">View Methods</a></h2>
-<p>First to notice on the top left you have a login button and a list of the view methods</p>
+<p>First, notice on the top left that you have a login button and a list of view methods</p>
 <p><img src="images/view.png" alt="View Methods" /></p>
 <p>Clicking on <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> will immediately call the view method since it has no arguments.</p>
-<p>You can also notice that the comment from the code is displayed helping to describe the method.</p>
+<p>You can also notice that the comment from the code is displayed, helping to describe the method.</p>
 <p><img src="images/get_num.png" alt="Get Num" /></p>
 <hr />
 <h2 id="change-methods"><a class="header" href="#change-methods">Change Methods</a></h2>
-<p>Below the View Methods are the change methods which update the contract state.</p>
+<p>Below View Methods, you'll see Change Methods.</p>
 <p><img src="images/change.png" alt="Change Calls" /></p>
 <p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Reset"><code>reset</code></a>.</p>
 <p><img src="images/reset.png" alt="reset" /></p>
 <p>Again you can see the comments from the code. However, now there are two new fields in the form. </p>
 <ul>
+<li><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in <a href="https://en.wikipedia.org/wiki/Yocto-">yocto</a>Near, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</li>
+<li><code>gas</code> is how much gas to attach to cover the execution costs. It is in <a href="https://docs.near.org/docs/concepts/gas">units of gas</a>, here 30 <a href="https://en.wikipedia.org/wiki/Tera-">Tera</a>Gas—more than enough for this transaction.</li>
+</ul>
+<p>You will need to sign in to submit this form. If you don't have a NEAR <a href="https://docs.near.org/docs/concepts/networks#testnet">testnet</a> account, NEAR Wallet will guide you through creating one. Pro tip: select Email Recovery. It's plenty safe for testnet, and will greatly simplify recovering your account and using it in multiple browsers.</p>
+<p>Once you sign in and submit the <code>reset</code> form, you can revisit <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> and see that it is now <code>0</code> (unless someone else already changed it again).</p>
+<h2 id="digging-deeper-look-no-near-wallet-confirmation"><a class="header" href="#digging-deeper-look-no-near-wallet-confirmation">Digging deeper: look, no NEAR Wallet confirmation</a></h2>
+<p>If you're used to Ethereum apps, you may be surprised that submitting the <code>reset</code> form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.</p>
+<p>NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: <a href="https://docs.near.org/docs/concepts/gas">negligible and predictable transaction fees</a>, also called <em>gas</em> fees. And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?</p>
+<p>Here is what actually happens when you sign in with NEAR:</p>
+<ul>
 <li>
-<p><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in yoctoNear, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</p>
+<p>NEAR Wallet adds a new <a href="https://docs.near.org/docs/concepts/access-keys">FunctionCall Access Key</a> to your account. You can see this listed in the &quot;Recent activity&quot; section on <a href="https://wallet.testnet.near.org">wallet.testnet.near.org</a>. In a nutshell:</p>
+<ul>
+<li>This key can ONLY make calls to the <code>counter.raendev.testnet</code> contract (or your version of it)</li>
+<li>This key has an allowance of <strong>0.25 NEAR</strong> that it can spend on transaction fees on your behalf. If you use RAEN Admin for long enough to exhaust this allowance, every call to a Change Method will start redirecting to NEAR Wallet.</li>
+<li>If a transaction has an <code>attachedDeposit</code>, no matter how small, it WILL require explicit user confirmation.</li>
+</ul>
 </li>
 <li>
-<p><code>gas</code> is how much gas to attach to cover the execution costs. It is in units of gas here <code>30 Terra gas</code>, which is more than enough for this transaction.</p>
+<p>NEAR Wallet redirects to the previous URL at <code>raen.dev/admin</code>, adding some extra URL parameters with information about this new Access Key.</p>
+</li>
+<li>
+<p><code>raen.dev/admin</code>, using default behavior in <a href="https://docs.near.org/docs/api/javascript-library">near-api-js</a>, adds this key to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a> in your browser. If you know your way around your browser's <a href="https://developer.chrome.com/docs/devtools/storage/localstorage/">Web Inspector</a>, you can use it to see your key (be careful! this is a private key! but also it can only call <code>counter.raendev.testnet</code> and can only spend 0.25 NEAR, so maybe you don't need to be <em>too</em> careful).</p>
 </li>
 </ul>
-<p>Clicking on <code>Submit</code> will use the key added from logging in to make the transaction. Since this call doesn't require any NEAR we don't need to personally sign the transaction.</p>
-<p>Returning to <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> you should see that it is now <code>0</code>.</p>
 
                     </main>
 

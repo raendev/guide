@@ -340,7 +340,7 @@ pub fn get_num(&amp;self) -&gt; i8 {
 </code></pre>
 <p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're not used to thinking about the compiled size of server-side code, when working with blockchains, you need to <a href="https://docs.near.org/docs/concepts/storage-staking">think about it</a>.)</p>
 <h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>
-<pre><code class="language-bash">near dev-delpoy --wasmFile ./target/res/counter_contract.wasm
+<pre><code class="language-bash">near dev-deploy --wasmFile ./target/res/counter_contract.wasm
 </code></pre>
 <p>This will create a new throwaway NEAR account on testnet and deploy the contract to that address.</p>
 <p>Copy this address and head over to <a href="https://raen.dev/admin">raen.dev/admin</a> to interact with the contract.</p>

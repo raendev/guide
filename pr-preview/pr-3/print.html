@@ -141,9 +141,12 @@
 <p>RAEN is a build tool for NEAR smart contracts.</p>
 <p>With RAEN, you can:</p>
 <ul>
-<li><code>build</code>: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's WebAssembly (Wasm) binary.</li>
+<li><code>build</code>: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's <a href="https://webassembly.org/">WebAssembly</a> (Wasm) binary.</li>
 <li><code>fetch</code> <em>[coming soon]</em>: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.</li>
 </ul>
+<p>NEAR works with any programming language that compiles to Wasm, but the most advanced NEAR SDK and documentation currently exist <a href="https://www.near-sdk.io/">for Rust</a>.</p>
+<p>RAEN, too, is built around a <a href="https://github.com/bytecodealliance/wit-bindgen">language-agnostic standard</a>, but currently only works with contracts written in <a href="https://www.rust-lang.org/">Rust</a>.</p>
+<p>This guide will introduce you to NEAR, Rust, and RAEN.</p>
 <h3 id="about-the-name"><a class="header" href="#about-the-name">About the name</a></h3>
 <p>&quot;RAEN&quot; is &quot;NEAR&quot; spelled backwards. It is pronounced the same as &quot;rain&quot;.</p>
 <h1 id="getting-set-up"><a class="header" href="#getting-set-up">Getting Set Up</a></h1>

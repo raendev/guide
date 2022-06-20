@@ -41,11 +41,11 @@ Next let's see how to mutate or change `val`.
 
 ```rust,noplayground,ignore
 {{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:15}}
-  ...
+    ...
 
 {{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:22:26}}
   
-  ...
+    ...
 }
 ```
 

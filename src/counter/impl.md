@@ -51,7 +51,7 @@ Next let's see how to mutate or change `val`.
 
 ### `;`
 
-Rust uses semicolons to separate expressions. You'll see that the last line here is the same as the only line in `get_num`, with no semicolon. You may have already guessed that this means `set_num` also returns the value of `num`. This also matches the return type, `-> i8`.
+Rust uses semicolons to separate expressions. See that the last line here is the same as the only line in `get_num`, with no semicolon. You may have already guessed that this means `set_num` also returns the value of `num`. This also matches the return type, `-> i8`.
 
 ### `&mut self`
 

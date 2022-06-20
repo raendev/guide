@@ -19,4 +19,8 @@ With RAEN, you can:
 git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
 ```
 
-If you have experience with NEAR, you can skip ahead to [Chapter 2: Status Message](./status-message/wit.md).
+<!--
+TODO: link to Status Message: Expert once it's complete
+
+If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Message Expert](./status-message/expert/intro.md).
+-->

@@ -151,7 +151,7 @@
 <p>or</p>
 <pre><code class="language-bash">npm run build
 </code></pre>
-<p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're not used to thinking about the compiled size of server-side code, when working with blockchains, you need to <a href="https://docs.near.org/docs/concepts/storage-staking">think about it</a>.)</p>
+<p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're unaccustomed to considering server-side code size, it's time to start building a new habit. Blockchains are space-constrained, and you'll need to pay for <a href="https://docs.near.org/docs/concepts/storage-staking">storage costs</a>.)</p>
 <h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>
 <pre><code class="language-bash">near dev-deploy --wasmFile ./target/res/counter_contract.wasm
 </code></pre>

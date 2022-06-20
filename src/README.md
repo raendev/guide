@@ -13,7 +13,7 @@ With RAEN, you can:
 
 # Getting Set Up
 
-[Install RAEN](https://raen.dev/docs/guide/installation.html), then install the examples repository to follow along:
+[Install RAEN](https://raen.dev/docs/guide/installation.html), then clone the examples repository to follow along:
 
 ```bash
 git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive

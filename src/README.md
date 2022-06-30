@@ -16,17 +16,3 @@ This guide will introduce you to NEAR, Rust, and RAEN.
 ### About the name
 
 "RAEN" is "NEAR" spelled backwards. It is pronounced the same as "rain".
-
-# Getting Set Up
-
-[Install RAEN](https://github.com/raendev/raen), then clone the examples repository to follow along:
-
-```bash
-git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive
-```
-
-<!--
-TODO: link to Status Message: Expert once it's complete
-
-If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Message Expert](./status-message/expert/intro.md).
--->

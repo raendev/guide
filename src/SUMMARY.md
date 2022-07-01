@@ -1,7 +1,8 @@
 # Summary
 
-[Introduction](README.md)
-
+- [Introduction](README.md)
+  - [Who is this for?](./intro/who-is-this-for.md)
+  - [Getting Set Up](./intro/getting-set-up.md)
 - [Counter](./counter/intro.md)
   - [Defining the data](counter/first_steps.md)
   - [Implementation](counter/impl.md)

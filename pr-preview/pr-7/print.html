@@ -167,16 +167,16 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-set-up"><a class="header" href="#getting-set-up">Getting Set Up</a></h1>
 <ol>
 <li>
-<p>Install or update Rust. On <strong>macOS or Linux</strong>:</p>
+<p>Install or update Rust:</p>
 <pre><code class="language-bash">curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 </code></pre>
 <p>See <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">full instructions in the Rust Book</a>.</p>
 </li>
 <li>
-<p>Add the <a href="https://webassembly.org/">WebAssembly</a> (Wasm) toolchain to Rust:</p>
+<p>Add the <a href="https://webassembly.org/">WebAssembly</a> (Wasm) toolchain:</p>
 <pre><code class="language-bash">rustup target add wasm32-unknown-unknown
 </code></pre>
-<p>This toolchain is required because NEAR smart contracts need to be compiled to Wasm with <em>architecture</em> and <em>platform</em> both &quot;unknown&quot;.</p>
+<p>NEAR smart contracts need to be compiled to 32-bit Wasm with <em>architecture</em> and <em>platform</em> both &quot;unknown&quot;.</p>
 </li>
 <li>
 <p>Install RAEN:</p>
@@ -187,9 +187,10 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 </li>
 <li>
 <p>Install <code>near-cli</code>:</p>
-<p>Prerequisite: <a href="https://nodejs.dev/learn/how-to-install-nodejs">install NodeJS</a>. There is a Rust version of near-cli <a href="https://github.com/near/near-cli-rs">in the works</a>, but it is not ready yet. Someday <code>raen</code> will wrap <code>near</code> (or work with the new Rust-based CLI as a plugin), allowing you to only install one package. But for now, you need both.</p>
+<p>Prerequisite: <a href="https://nodejs.dev/learn/how-to-install-nodejs">install NodeJS</a>.</p>
 <pre><code class="language-bash">npm install --global near-cli
 </code></pre>
+<p>There is a Rust version of near-cli <a href="https://github.com/near/near-cli-rs">in the works</a>, but it's not ready yet. Someday <code>raen</code> will wrap <code>near</code> (or work with the new Rust-based CLI as a plugin), allowing you to only install one package. But for now, you need both.</p>
 </li>
 <li>
 <p>Configure your editor.</p>
@@ -207,8 +208,8 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <p>Change into <code>raen-examples/contracts/rust-counter</code>, then build:</p>
 <pre><code class="language-bash">raen build --release
 </code></pre>
-<p>This may take a minute. Rust fetches dependencies and compiles your project in one step. If you run it a second time, you'll see that it completes much faster.</p>
-<p>If you skip this step, the editor extensions added in Step 5 will not work as expected. You need to have dependencies installed for your editor to type-check their imports and show their documentation.</p>
+<p>This may take a minute. Rust fetches dependencies and compiles your project in one step. It will go faster on subsequent runs.</p>
+<p>If you skip this, the editor setup from Step 5 won't work.</p>
 </li>
 <li>
 <p>Open an example.</p>

@@ -5,7 +5,7 @@ Let's take a look at the full contract and go over details we skipped at first.
 ## Imports from `near-sdk`
  
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:5:6}}
+{{#include ../../examples/contracts/counter/src/lib.rs:5:6}}
 ```
 
 ### Borsh
@@ -23,7 +23,7 @@ This is the real magic of `near-sdk`.  Like `log` it is a macro, but generates c
 ## Contract struct
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:8:12}}
+{{#include ../../examples/contracts/counter/src/lib.rs:8:12}}
 ```
 
 `near_bindgen` here means that the contract's state comes from this struct.
@@ -77,9 +77,8 @@ where
 
 ## Full implementation
 
- 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:14:42}}
+{{#include ../../examples/contracts/counter/src/lib.rs:14:34}}
 ```
 
 In Rust, you can use `//` for regular comments and `///` for [documentation comments](https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments), which will automatically be turned into documentation by various tooling.

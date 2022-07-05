@@ -3,7 +3,7 @@
 To attach methods to a `struct` in Rust, use an `impl`. As a reminder, here's our struct from the last page:
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:10:12}}
+{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
 ```
 
 ## A view method
@@ -11,8 +11,8 @@ To attach methods to a `struct` in Rust, use an `impl`. As a reminder, here's ou
 Let's add a method to view the field `val`.
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:15}}
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:17:19}}
+{{#include ../../examples/contracts/counter/src/lib.rs:15}}
+{{#include ../../examples/contracts/counter/src/lib.rs:17:19}}
     ...
 }
 ```
@@ -40,10 +40,10 @@ This accesses the field `val`. You will also notice that there is no `return` st
 Next let's see how to mutate or change `val`. 
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:15}}
+{{#include ../../examples/contracts/counter/src/lib.rs:15}}
     ...
 
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:22:26}}
+{{#include ../../examples/contracts/counter/src/lib.rs:22:26}}
   
     ...
 }

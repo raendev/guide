@@ -142,8 +142,7 @@
                         <h1 id="final-code"><a class="header" href="#final-code">Final Code</a></h1>
 <p>Let's take a look at the full contract and go over details we skipped at first.</p>
 <h2 id="imports-from-near-sdk"><a class="header" href="#imports-from-near-sdk">Imports from <code>near-sdk</code></a></h2>
-<pre><code class="language-rust noplayground ignore">use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
-use near_sdk::{log, near_bindgen};
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:5:6}}
 </code></pre>
 <h3 id="borsh"><a class="header" href="#borsh">Borsh</a></h3>
 <p>Borsh is <a href="https://borsh.io/">a serialization framework</a>, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a Rust type to be Borsh Serializable it needs to implement <code>BorshSerialize</code> and <code>BorshDeserialize</code>.</p>
@@ -152,11 +151,7 @@ use near_sdk::{log, near_bindgen};
 <h3 id="near_bindgen"><a class="header" href="#near_bindgen"><code>near_bindgen</code></a></h3>
 <p>This is the real magic of <code>near-sdk</code>.  Like <code>log</code> it is a macro, but generates code for the whole contract.</p>
 <h2 id="contract-struct"><a class="header" href="#contract-struct">Contract struct</a></h2>
-<pre><code class="language-rust noplayground ignore">#[near_bindgen]
-#[derive(Default, BorshDeserialize, BorshSerialize)]
-pub struct Counter {
-    val: i8,
-}
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:8:12}}
 </code></pre>
 <p><code>near_bindgen</code> here means that the contract's state comes from this struct.</p>
 <p><code>derive</code> is a built-in macro. Each item passed to <code>derive</code> is a <a href="https://doc.rust-lang.org/stable/book/ch10-02-traits.html">trait</a>:</p>
@@ -202,35 +197,7 @@ where
 </code></pre>
 </details>
 <h2 id="full-implementation"><a class="header" href="#full-implementation">Full implementation</a></h2>
-<pre><code class="language-rust noplayground ignore">#[near_bindgen]
-impl Counter {
-    /// Public method: Returns the counter value.
-    pub fn get_num(&amp;self) -&gt; i8 {
-        self.val
-    }
-
-    /// Public method: Increment the counter.
-    pub fn increment(&amp;mut self) -&gt; i8 {
-        self.val += 1;
-        log!(&quot;Increased number to {}&quot;, self.val);
-        self.val
-    }
-
-    /// Public method: Decrement the counter.
-    pub fn decrement(&amp;mut self) -&gt; i8 {
-        self.val -= 1;
-        log!(&quot;Decreased number to {}&quot;, self.val);
-        self.val
-    }
-
-    /// Public method - Reset to zero.
-    pub fn reset(&amp;mut self) -&gt; i8 {
-        self.val = 0;
-        log!(&quot;Reset counter to zero&quot;);
-        self.val
-    }
-}
-
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:14:34}}
 </code></pre>
 <p>In Rust, you can use <code>//</code> for regular comments and <code>///</code> for <a href="https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments">documentation comments</a>, which will automatically be turned into documentation by various tooling.</p>
 <h2 id="digging-deeper"><a class="header" href="#digging-deeper">Digging deeper</a></h2>

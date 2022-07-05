@@ -142,14 +142,8 @@
                         <h2 id="using-raen"><a class="header" href="#using-raen">Using RAEN</a></h2>
 <p>Now we can finally use RAEN to build our contract!</p>
 <!-- Add instructions for cloning the examples repo; -->
-<p>From within the <code>rust-contracts</code> directory use the build command:</p>
+<p>From within the <code>counter</code> directory use the build command:</p>
 <pre><code class="language-bash">raen build --release
-</code></pre>
-<p>or with <code>npm</code> script:</p>
-<pre><code class="language-bash">yarn build
-</code></pre>
-<p>or</p>
-<pre><code class="language-bash">npm run build
 </code></pre>
 <p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're unaccustomed to considering server-side code size, it's time to start building a new habit. Blockchains are space-constrained, and you'll need to pay for <a href="https://docs.near.org/docs/concepts/storage-staking">storage costs</a>.)</p>
 <h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>

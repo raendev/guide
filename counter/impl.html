@@ -141,16 +141,12 @@
                     <main>
                         <h1 id="defining-the-implementation"><a class="header" href="#defining-the-implementation">Defining the implementation</a></h1>
 <p>To attach methods to a <code>struct</code> in Rust, use an <code>impl</code>. As a reminder, here's our struct from the last page:</p>
-<pre><code class="language-rust noplayground ignore">pub struct Counter {
-    val: i8,
-}
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
 </code></pre>
 <h2 id="a-view-method"><a class="header" href="#a-view-method">A view method</a></h2>
 <p>Let's add a method to view the field <code>val</code>.</p>
-<pre><code class="language-rust noplayground ignore">impl Counter {
-    pub fn get_num(&amp;self) -&gt; i8 {
-        self.val
-    }
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
+{{#include ../../examples/contracts/counter/src/lib.rs:17:19}}
     ...
 }
 </code></pre>
@@ -165,14 +161,10 @@
 <p>This accesses the field <code>val</code>. You will also notice that there is no <code>return</code> statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.</p>
 <h2 id="a-change-method"><a class="header" href="#a-change-method">A change method</a></h2>
 <p>Next let's see how to mutate or change <code>val</code>. </p>
-<pre><code class="language-rust noplayground ignore">impl Counter {
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
     ...
 
-    pub fn increment(&amp;mut self) -&gt; i8 {
-        self.val += 1;
-        log!(&quot;Increased number to {}&quot;, self.val);
-        self.val
-    }
+{{#include ../../examples/contracts/counter/src/lib.rs:22:26}}
   
     ...
 }

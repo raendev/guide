@@ -199,13 +199,13 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 </li>
 <li>
 <p>Clone the Examples repository:</p>
-<pre><code class="language-bash">git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive raen-examples
+<pre><code class="language-bash">git clone --depth 1 --branch v0.0.4 https://github.com/raendev/examples.git --recursive raen-examples
 </code></pre>
 <p>This will clone <a href="https://github.com/raendev/examples">github.com/raendev/examples</a> to a folder called <code>raen-examples</code>.</p>
 </li>
 <li>
 <p>Build with RAEN.</p>
-<p>Change into <code>raen-examples/contracts/rust-counter</code>, then build:</p>
+<p>Change into <code>raen-examples/contracts/counter</code>, then build:</p>
 <pre><code class="language-bash">raen build --release
 </code></pre>
 <p>This may take a minute. Rust fetches dependencies and compiles your project in one step. It will go faster on subsequent runs.</p>
@@ -213,7 +213,7 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 </li>
 <li>
 <p>Open an example.</p>
-<p>We're going to start with <code>raen-examples/contracts/rust-counter</code>. Open this folder in your editor. Let's take a look around.</p>
+<p>We're going to start with <code>raen-examples/contracts/counter</code>. Open this folder in your editor. Let's take a look around.</p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-counter-example"><a class="header" href="#basic-counter-example">Basic Counter Example</a></h1>
@@ -221,9 +221,7 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <p>The simplest example of this is a counter. A contract that can read, increment, and decrement a value.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="defining-the-data"><a class="header" href="#defining-the-data">Defining the data</a></h2>
 <p>First the contract's state, what will be written to storage, needs to be defined.</p>
-<pre><code class="language-rust noplayground ignore">pub struct Counter {
-    val: i8,
-}
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
 </code></pre>
 <h3 id="struct"><a class="header" href="#struct"><code>struct</code></a></h3>
 <p>A <code>struct</code> in Rust defines a data structure with fields, similar to a class, object, Hash, or Dictionary in other languages.</p>
@@ -239,16 +237,12 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="defining-the-implementation"><a class="header" href="#defining-the-implementation">Defining the implementation</a></h1>
 <p>To attach methods to a <code>struct</code> in Rust, use an <code>impl</code>. As a reminder, here's our struct from the last page:</p>
-<pre><code class="language-rust noplayground ignore">pub struct Counter {
-    val: i8,
-}
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
 </code></pre>
 <h2 id="a-view-method"><a class="header" href="#a-view-method">A view method</a></h2>
 <p>Let's add a method to view the field <code>val</code>.</p>
-<pre><code class="language-rust noplayground ignore">impl Counter {
-    pub fn get_num(&amp;self) -&gt; i8 {
-        self.val
-    }
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
+{{#include ../../examples/contracts/counter/src/lib.rs:17:19}}
     ...
 }
 </code></pre>
@@ -263,14 +257,10 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <p>This accesses the field <code>val</code>. You will also notice that there is no <code>return</code> statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.</p>
 <h2 id="a-change-method"><a class="header" href="#a-change-method">A change method</a></h2>
 <p>Next let's see how to mutate or change <code>val</code>. </p>
-<pre><code class="language-rust noplayground ignore">impl Counter {
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
     ...
 
-    pub fn increment(&amp;mut self) -&gt; i8 {
-        self.val += 1;
-        log!(&quot;Increased number to {}&quot;, self.val);
-        self.val
-    }
+{{#include ../../examples/contracts/counter/src/lib.rs:22:26}}
   
     ...
 }
@@ -287,8 +277,7 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <div style="break-before: page; page-break-before: always;"></div><h1 id="final-code"><a class="header" href="#final-code">Final Code</a></h1>
 <p>Let's take a look at the full contract and go over details we skipped at first.</p>
 <h2 id="imports-from-near-sdk"><a class="header" href="#imports-from-near-sdk">Imports from <code>near-sdk</code></a></h2>
-<pre><code class="language-rust noplayground ignore">use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
-use near_sdk::{log, near_bindgen};
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:5:6}}
 </code></pre>
 <h3 id="borsh"><a class="header" href="#borsh">Borsh</a></h3>
 <p>Borsh is <a href="https://borsh.io/">a serialization framework</a>, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a Rust type to be Borsh Serializable it needs to implement <code>BorshSerialize</code> and <code>BorshDeserialize</code>.</p>
@@ -297,11 +286,7 @@ use near_sdk::{log, near_bindgen};
 <h3 id="near_bindgen"><a class="header" href="#near_bindgen"><code>near_bindgen</code></a></h3>
 <p>This is the real magic of <code>near-sdk</code>.  Like <code>log</code> it is a macro, but generates code for the whole contract.</p>
 <h2 id="contract-struct"><a class="header" href="#contract-struct">Contract struct</a></h2>
-<pre><code class="language-rust noplayground ignore">#[near_bindgen]
-#[derive(Default, BorshDeserialize, BorshSerialize)]
-pub struct Counter {
-    val: i8,
-}
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:8:12}}
 </code></pre>
 <p><code>near_bindgen</code> here means that the contract's state comes from this struct.</p>
 <p><code>derive</code> is a built-in macro. Each item passed to <code>derive</code> is a <a href="https://doc.rust-lang.org/stable/book/ch10-02-traits.html">trait</a>:</p>
@@ -347,35 +332,7 @@ where
 </code></pre>
 </details>
 <h2 id="full-implementation"><a class="header" href="#full-implementation">Full implementation</a></h2>
-<pre><code class="language-rust noplayground ignore">#[near_bindgen]
-impl Counter {
-    /// Public method: Returns the counter value.
-    pub fn get_num(&amp;self) -&gt; i8 {
-        self.val
-    }
-
-    /// Public method: Increment the counter.
-    pub fn increment(&amp;mut self) -&gt; i8 {
-        self.val += 1;
-        log!(&quot;Increased number to {}&quot;, self.val);
-        self.val
-    }
-
-    /// Public method: Decrement the counter.
-    pub fn decrement(&amp;mut self) -&gt; i8 {
-        self.val -= 1;
-        log!(&quot;Decreased number to {}&quot;, self.val);
-        self.val
-    }
-
-    /// Public method - Reset to zero.
-    pub fn reset(&amp;mut self) -&gt; i8 {
-        self.val = 0;
-        log!(&quot;Reset counter to zero&quot;);
-        self.val
-    }
-}
-
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:14:34}}
 </code></pre>
 <p>In Rust, you can use <code>//</code> for regular comments and <code>///</code> for <a href="https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments">documentation comments</a>, which will automatically be turned into documentation by various tooling.</p>
 <h2 id="digging-deeper"><a class="header" href="#digging-deeper">Digging deeper</a></h2>
@@ -394,14 +351,8 @@ pub fn get_num(&amp;self) -&gt; i8 {
 <div style="break-before: page; page-break-before: always;"></div><h2 id="using-raen"><a class="header" href="#using-raen">Using RAEN</a></h2>
 <p>Now we can finally use RAEN to build our contract!</p>
 <!-- Add instructions for cloning the examples repo; -->
-<p>From within the <code>rust-contracts</code> directory use the build command:</p>
+<p>From within the <code>counter</code> directory use the build command:</p>
 <pre><code class="language-bash">raen build --release
-</code></pre>
-<p>or with <code>npm</code> script:</p>
-<pre><code class="language-bash">yarn build
-</code></pre>
-<p>or</p>
-<pre><code class="language-bash">npm run build
 </code></pre>
 <p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're unaccustomed to considering server-side code size, it's time to start building a new habit. Blockchains are space-constrained, and you'll need to pay for <a href="https://docs.near.org/docs/concepts/storage-staking">storage costs</a>.)</p>
 <h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>
@@ -423,17 +374,17 @@ pub fn get_num(&amp;self) -&gt; i8 {
 <h2 id="change-methods"><a class="header" href="#change-methods">Change Methods</a></h2>
 <p>Below View Methods, you'll see Change Methods.</p>
 <p><img src="counter/images/change.png" alt="Change Calls" /></p>
-<p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Reset"><code>reset</code></a>.</p>
-<p><img src="counter/images/reset.png" alt="reset" /></p>
+<p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Increment"><code>increment</code></a>.</p>
+<p><img src="counter/images/increment.png" alt="increment" /></p>
 <p>Again you can see the comments from the code. However, now there are two new fields in the form. </p>
 <ul>
 <li><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in <a href="https://en.wikipedia.org/wiki/Yocto-">yocto</a>Near, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</li>
 <li><code>gas</code> is how much gas to attach to cover the execution costs. It is in <a href="https://docs.near.org/docs/concepts/gas">units of gas</a>, here 30 <a href="https://en.wikipedia.org/wiki/Tera-">Tera</a>Gas—more than enough for this transaction.</li>
 </ul>
 <p>You will need to sign in to submit this form. If you don't have a NEAR <a href="https://docs.near.org/docs/concepts/networks#testnet">testnet</a> account, NEAR Wallet will guide you through creating one. Pro tip: select Email Recovery. It's plenty safe for testnet, and will greatly simplify recovering your account and using it in multiple browsers.</p>
-<p>Once you sign in and submit the <code>reset</code> form, you can revisit <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> and see that it is now <code>0</code> (unless someone else already changed it again).</p>
+<p>Once you sign in and submit the <code>increment</code> form, you can revisit <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> and see that it is now <code>0</code> (unless someone else already changed it again).</p>
 <h2 id="digging-deeper-look-no-near-wallet-confirmation"><a class="header" href="#digging-deeper-look-no-near-wallet-confirmation">Digging deeper: look, no NEAR Wallet confirmation</a></h2>
-<p>If you're used to Ethereum apps, you may be surprised that submitting the <code>reset</code> form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.</p>
+<p>If you're used to Ethereum apps, you may be surprised that submitting the <code>increment</code> form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.</p>
 <p>NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: <a href="https://docs.near.org/docs/concepts/gas">negligible and predictable transaction fees</a>, also called <em>gas</em> fees. And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?</p>
 <p>Here is what actually happens when you sign in with NEAR:</p>
 <ul>

@@ -152,17 +152,17 @@
 <h2 id="change-methods"><a class="header" href="#change-methods">Change Methods</a></h2>
 <p>Below View Methods, you'll see Change Methods.</p>
 <p><img src="images/change.png" alt="Change Calls" /></p>
-<p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Reset"><code>reset</code></a>.</p>
-<p><img src="images/reset.png" alt="reset" /></p>
+<p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Increment"><code>increment</code></a>.</p>
+<p><img src="images/increment.png" alt="increment" /></p>
 <p>Again you can see the comments from the code. However, now there are two new fields in the form. </p>
 <ul>
 <li><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in <a href="https://en.wikipedia.org/wiki/Yocto-">yocto</a>Near, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</li>
 <li><code>gas</code> is how much gas to attach to cover the execution costs. It is in <a href="https://docs.near.org/docs/concepts/gas">units of gas</a>, here 30 <a href="https://en.wikipedia.org/wiki/Tera-">Tera</a>Gas—more than enough for this transaction.</li>
 </ul>
 <p>You will need to sign in to submit this form. If you don't have a NEAR <a href="https://docs.near.org/docs/concepts/networks#testnet">testnet</a> account, NEAR Wallet will guide you through creating one. Pro tip: select Email Recovery. It's plenty safe for testnet, and will greatly simplify recovering your account and using it in multiple browsers.</p>
-<p>Once you sign in and submit the <code>reset</code> form, you can revisit <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> and see that it is now <code>0</code> (unless someone else already changed it again).</p>
+<p>Once you sign in and submit the <code>increment</code> form, you can revisit <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> and see that it is now <code>0</code> (unless someone else already changed it again).</p>
 <h2 id="digging-deeper-look-no-near-wallet-confirmation"><a class="header" href="#digging-deeper-look-no-near-wallet-confirmation">Digging deeper: look, no NEAR Wallet confirmation</a></h2>
-<p>If you're used to Ethereum apps, you may be surprised that submitting the <code>reset</code> form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.</p>
+<p>If you're used to Ethereum apps, you may be surprised that submitting the <code>increment</code> form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.</p>
 <p>NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: <a href="https://docs.near.org/docs/concepts/gas">negligible and predictable transaction fees</a>, also called <em>gas</em> fees. And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?</p>
 <p>Here is what actually happens when you sign in with NEAR:</p>
 <ul>

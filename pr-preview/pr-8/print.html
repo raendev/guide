@@ -1,0 +1,618 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RAEN Guide</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="intro/who-is-this-for.html"><strong aria-hidden="true">1.1.</strong> Who is this for?</a></li><li class="chapter-item expanded "><a href="intro/getting-set-up.html"><strong aria-hidden="true">1.2.</strong> Getting Set Up</a></li></ol></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">2.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">2.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">2.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">2.3.</strong> Final Code</a></li><li class="chapter-item expanded "><a href="counter/working_with_contract.html"><strong aria-hidden="true">2.4.</strong> Using RAEN</a></li><li class="chapter-item expanded "><a href="counter/admin.html"><strong aria-hidden="true">2.5.</strong> RAEN Admin</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intro.html"><strong aria-hidden="true">3.</strong> Status Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/simple/simple.html"><strong aria-hidden="true">3.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="status-message/simple/methods.html"><strong aria-hidden="true">3.2.</strong> Contract Methods</a></li><li class="chapter-item expanded "><a href="status-message/simple/admin.html"><strong aria-hidden="true">3.3.</strong> Set & Get Status</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intermediate/addding_message.html"><strong aria-hidden="true">4.</strong> Intermediate Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/intermediate/methods.html"><strong aria-hidden="true">4.1.</strong> Updating Methods</a></li><li class="chapter-item expanded "><a href="status-message/intermediate/admin.html"><strong aria-hidden="true">4.2.</strong> Set & Get Status Part 2</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/advanced/intro.html"><strong aria-hidden="true">5.</strong> Advanced Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/advanced/witgen.html"><strong aria-hidden="true">5.1.</strong> Using witgen</a></li><li class="chapter-item expanded "><a href="status-message/advanced/admin.html"><strong aria-hidden="true">5.2.</strong> Set & Get Status Part 3</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Expert Message</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">RAEN Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/raendev/guide/tree/master" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="welcome-to-raen-"><a class="header" href="#welcome-to-raen-">Welcome to RAEN 🌧</a></h1>
+<p>RAEN is a build tool for NEAR smart contracts.</p>
+<p>With RAEN, you can:</p>
+<ul>
+<li><code>build</code>: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's <a href="https://webassembly.org/">WebAssembly</a> (Wasm) binary.</li>
+<li><code>fetch</code> <em>[coming soon]</em>: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.</li>
+</ul>
+<p>NEAR works with any programming language that compiles to Wasm, but the most advanced NEAR SDK and documentation currently exist <a href="https://www.near-sdk.io/">for Rust</a>.</p>
+<p>RAEN, too, is built around a <a href="https://github.com/bytecodealliance/wit-bindgen">language-agnostic standard</a>, but currently only works with contracts written in <a href="https://www.rust-lang.org/">Rust</a>.</p>
+<p>This guide will introduce you to NEAR, Rust, and RAEN.</p>
+<h3 id="about-the-name"><a class="header" href="#about-the-name">About the name</a></h3>
+<p>&quot;RAEN&quot; is &quot;NEAR&quot; spelled backwards. It is pronounced the same as &quot;rain&quot;.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="who-is-this-for"><a class="header" href="#who-is-this-for">Who is this for?</a></h1>
+<p>App developers.</p>
+<p>If you're wondering what a blockchain even is or what effects it might have on the world, you can find lots of other introductions. Here's a <a href="https://martinhiesboeck.blog/2018/04/02/how-blockchain-will-save-the-world/">booster</a>, a <a href="https://www.youtube.com/watch?v=YQ_xWvX1n9g">doomer</a>, <a href="https://www.youtube.com/watch?v=YQ_xWvX1n9g">some</a> <a href="https://www.nytimes.com/2022/04/05/opinion/ezra-klein-podcast-dan-olson.html">discussions</a>, and a <a href="https://www.nytimes.com/interactive/2022/03/18/technology/cryptocurrency-crypto-guide.html">refreshingly neutral intro</a>.</p>
+<p>If you want to know how blockchains work, there's lots of other introductions for that, too. You can learn about <a href="https://www.3blue1brown.com/lessons/bitcoin">Proof of Work</a> and <a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/">Proof of Stake</a> and read <a href="https://bitcoinwhitepaper.co/">lots</a> <a href="https://ethereum.org/en/whitepaper/">of</a> <a href="https://docs.near.org/docs/concepts/architecture/papers">whitepapers</a>.</p>
+<p>This guide sits in between such philosophical intros and nitty-gritty explainers.</p>
+<p>If you want to learn how to actually <em>use</em> a blockchain, this guide is for you. You'll get a gentle introduction to Rust, the <a href="https://insights.stackoverflow.com/survey/2021#technology-most-loved-dreaded-and-wanted">most-loved language for seven years running</a>, and a gentle introduction to NEAR.</p>
+<p>This guide assumes you have experience with the command line and at least one programming language. That's it.</p>
+<p>If you're already experienced with some other blockchain, you'll be able to go a bit faster through some parts.</p>
+<p>If you already have experience with Rust, you can probably skip certain parts and just look for the NEAR-specific stuff.</p>
+<p>If you're already experienced with Rust and NEAR, you probably don't need to stick around. Just go use RAEN. Have a great time!</p>
+<!--
+TODO: link to Status Message: Expert once it's complete
+
+If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Message Expert](./status-message/expert/intro.md).
+-->
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-set-up"><a class="header" href="#getting-set-up">Getting Set Up</a></h1>
+<ol>
+<li>
+<p>Install or update Rust:</p>
+<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+</code></pre>
+<p>See <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">full instructions in the Rust Book</a>.</p>
+</li>
+<li>
+<p>Add the <a href="https://webassembly.org/">WebAssembly</a> (Wasm) toolchain:</p>
+<pre><code class="language-bash">rustup target add wasm32-unknown-unknown
+</code></pre>
+<p>NEAR smart contracts need to be compiled to 32-bit Wasm with <em>architecture</em> and <em>platform</em> both &quot;unknown&quot;.</p>
+</li>
+<li>
+<p>Install RAEN:</p>
+<pre><code class="language-bash">cargo install raen
+</code></pre>
+<p>This will install <code>raen</code> globally, so it doesn't matter where you run it.</p>
+<p><code>cargo</code> was installed with Rust. Cargo is <a href="https://doc.rust-lang.org/cargo/index.html">the Rust package manager</a>, like NPM for NodeJS. Rust packages are called <em>crates</em>. <code>raen</code> is a Rust crate.</p>
+</li>
+<li>
+<p>Install <code>near-cli</code>:</p>
+<p>Prerequisite: <a href="https://nodejs.dev/learn/how-to-install-nodejs">install NodeJS</a>.</p>
+<pre><code class="language-bash">npm install --global near-cli
+</code></pre>
+<p>There is a Rust version of near-cli <a href="https://github.com/near/near-cli-rs">in the works</a>, but it's not ready yet. Someday <code>raen</code> will wrap <code>near</code> (or work with the new Rust-based CLI as a plugin), allowing you to only install one package. But for now, you need both.</p>
+</li>
+<li>
+<p>Configure your editor.</p>
+<p>In Visual Studio Code, install the <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">rust-analyzer extension</a>.</p>
+<p>The tools <a href="https://doc.rust-lang.org/book/appendix-04-useful-development-tools.html">recommended by the Rust Book</a> will give you further superpowers, making you feel comfy and productive in no time.</p>
+</li>
+<li>
+<p>Clone the Examples repository:</p>
+<pre><code class="language-bash">git clone --depth 1 --branch v0.0.4 https://github.com/raendev/examples.git --recursive raen-examples
+</code></pre>
+<p>This will clone <a href="https://github.com/raendev/examples">github.com/raendev/examples</a> to a folder called <code>raen-examples</code>.</p>
+</li>
+<li>
+<p>Build with RAEN.</p>
+<p>Change into <code>raen-examples/contracts/counter</code>, then build:</p>
+<pre><code class="language-bash">raen build --release
+</code></pre>
+<p>This may take a minute. Rust fetches dependencies and compiles your project in one step. It will go faster on subsequent runs.</p>
+<p>If you skip this, the editor setup from Step 5 won't work.</p>
+</li>
+<li>
+<p>Open an example.</p>
+<p>We're going to start with <code>raen-examples/contracts/counter</code>. Open this folder in your editor. Let's take a look around.</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="basic-counter-example"><a class="header" href="#basic-counter-example">Basic Counter Example</a></h1>
+<p>At its core, the NEAR blockchain is a big database.  A contract is a program with its own storage space. You have access to read and write to this storage like you would any key/value data structure.</p>
+<p>The simplest example of this is a counter. A contract that can read, increment, and decrement a value.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="defining-the-data"><a class="header" href="#defining-the-data">Defining the data</a></h2>
+<p>First the contract's state, what will be written to storage, needs to be defined.</p>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
+</code></pre>
+<h3 id="struct"><a class="header" href="#struct"><code>struct</code></a></h3>
+<p>A <code>struct</code> in Rust defines a data structure with fields, similar to a class, object, Hash, or Dictionary in other languages.</p>
+<h3 id="val"><a class="header" href="#val"><code>val</code></a></h3>
+<p>The field <code>val</code> is of type <code>i8</code><sup class="footnote-reference"><a href="#numbers">1</a></sup>, which, while sounding a bit like a iPhone version, is a signed 8-bit integer. This means it can be between <code>-128</code> and <code>127</code>. Without <a href="https://doc.rust-lang.org/cargo/reference/profiles.html#overflow-checks">overflow checks</a> enabled, if <code>val</code> is currently <code>127</code>, the next time it is incremented it will wrap around to be <code>-128</code>.</p>
+<h3 id="pub"><a class="header" href="#pub"><code>pub</code></a></h3>
+<p>Lastly, <code>pub</code> is short for <code>public</code>, meaning that the item is visible outside of the file<sup class="footnote-reference"><a href="#namespaces">2</a></sup>.</p>
+<div class="footnote-definition" id="numbers"><sup class="footnote-definition-label">1</sup>
+<p>If you want to read more about number types, check out <a href="https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types">The Rust Book's description</a>.</p>
+</div>
+<div class="footnote-definition" id="namespaces"><sup class="footnote-definition-label">2</sup>
+<p>Technically <code>pub</code> is a <a href="https://doc.rust-lang.org/reference/visibility-and-privacy.html">namespace</a>, but that's not important right now.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="defining-the-implementation"><a class="header" href="#defining-the-implementation">Defining the implementation</a></h1>
+<p>To attach methods to a <code>struct</code> in Rust, use an <code>impl</code>. As a reminder, here's our struct from the last page:</p>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
+</code></pre>
+<h2 id="a-view-method"><a class="header" href="#a-view-method">A view method</a></h2>
+<p>Let's add a method to view the field <code>val</code>.</p>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
+{{#include ../../examples/contracts/counter/src/lib.rs:17:19}}
+    ...
+}
+</code></pre>
+<h3 id="fn"><a class="header" href="#fn"><code>fn</code></a></h3>
+<p>This is the keyword for <code>function</code>. </p>
+<h3 id="self"><a class="header" href="#self"><code>&amp;self</code></a></h3>
+<p>This is a reference to the <code>Counter</code> struct. This lets you access the fields on the struct, however, it is <em>immutable</em> meaning that you cannot change or &quot;mutate&quot; the field.</p>
+<p>The ampersand (<code>&amp;</code>) means that the <code>get_num</code> function <em>borrows</em> <code>self</code>, rather than taking <em>ownership</em> of <code>self</code>. To feel confident with Rust, you will need to <a href="https://doc.rust-lang.org/stable/book/ch04-00-understanding-ownership.html">understand borrowing and ownership</a>. For now, pay attention to when this guide uses or omits the ampersand on variable names, and rely on Rust's industry-leading error messages to help you figure out if and when you need an ampersand in your own code.</p>
+<h3 id="--i8"><a class="header" href="#--i8"><code>-&gt; i8</code></a></h3>
+<p>The return type of the method. A signed 8-bit integer, matching <code>val</code>.</p>
+<h3 id="selfval"><a class="header" href="#selfval"><code>self.val</code></a></h3>
+<p>This accesses the field <code>val</code>. You will also notice that there is no <code>return</code> statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.</p>
+<h2 id="a-change-method"><a class="header" href="#a-change-method">A change method</a></h2>
+<p>Next let's see how to mutate or change <code>val</code>. </p>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
+    ...
+
+{{#include ../../examples/contracts/counter/src/lib.rs:22:26}}
+  
+    ...
+}
+</code></pre>
+<h3 id=""><a class="header" href="#"><code>;</code></a></h3>
+<p>Rust uses semicolons to separate expressions. See that the last line here is the same as the only line in <code>get_num</code>, with no semicolon. You may have already guessed that this means <code>set_num</code> also returns the value of <code>num</code>. This also matches the return type, <code>-&gt; i8</code>.</p>
+<h3 id="mut-self"><a class="header" href="#mut-self"><code>&amp;mut self</code></a></h3>
+<p>Here the reference to the struct is defined as mutable, allowing it to be changed.</p>
+<p>Mutable references are covered in the same chapter of the Rust Book <a href="https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html#mutable-references">on borrowing and ownership</a> linked above.</p>
+<h3 id="selfval--1"><a class="header" href="#selfval--1"><code>self.val += 1;</code></a></h3>
+<p>Here the value is incremented by 1.  This is the same as <code>self.val = self.val + 1</code>.</p>
+<h3 id="log"><a class="header" href="#log"><code>log!</code></a></h3>
+<p>This is the first instance of a macro. It's not super important to understand now, but basically it is a special function that generates code.  In this case, <code>log</code> generates code that formats a string and emits a log which you can see in <a href="https://explorer.near.org/">NEAR Explorer</a> or other block-explorer tools.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="final-code"><a class="header" href="#final-code">Final Code</a></h1>
+<p>Let's take a look at the full contract and go over details we skipped at first.</p>
+<h2 id="imports-from-near-sdk"><a class="header" href="#imports-from-near-sdk">Imports from <code>near-sdk</code></a></h2>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:5:6}}
+</code></pre>
+<h3 id="borsh"><a class="header" href="#borsh">Borsh</a></h3>
+<p>Borsh is <a href="https://borsh.io/">a serialization framework</a>, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a Rust type to be Borsh Serializable it needs to implement <code>BorshSerialize</code> and <code>BorshDeserialize</code>.</p>
+<h3 id="log-1"><a class="header" href="#log-1">log</a></h3>
+<p>We saw this before when printing the incremented value. As you can see macros are imported just like everything else.</p>
+<h3 id="near_bindgen"><a class="header" href="#near_bindgen"><code>near_bindgen</code></a></h3>
+<p>This is the real magic of <code>near-sdk</code>.  Like <code>log</code> it is a macro, but generates code for the whole contract.</p>
+<h2 id="contract-struct"><a class="header" href="#contract-struct">Contract struct</a></h2>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:8:12}}
+</code></pre>
+<p><code>near_bindgen</code> here means that the contract's state comes from this struct.</p>
+<p><code>derive</code> is a built-in macro. Each item passed to <code>derive</code> is a <a href="https://doc.rust-lang.org/stable/book/ch10-02-traits.html">trait</a>:</p>
+<ul>
+<li>The <code>Default</code> trait has a single <code>default</code> method, which returns a default instance of a type.</li>
+<li><code>BorshDeserialize</code> generates a <code>deserialize</code> method, so contract state can be read from storage.</li>
+<li><code>BorshSerialize</code> generates a <code>serialize</code> method, so contract state can be written to storage.</li>
+</ul>
+<details>
+<summary>Expand this section to see the code the above <code>derive</code> macro will generate.</summary>
+<pre><code class="language-rust noplayground ignore">
+impl ::core::default::Default for Counter {
+    #[inline]
+    fn default() -&gt; Counter {
+        Counter {
+            val: ::core::default::Default::default(),
+        }
+    }
+}
+impl borsh::de::BorshDeserialize for Counter
+where
+    i8: borsh::BorshDeserialize,
+{
+    fn deserialize(buf: &amp;mut &amp;[u8]) -&gt; ::core::result::Result&lt;Self, borsh::maybestd::io::Error&gt; {
+        Ok(Self {
+            val: borsh::BorshDeserialize::deserialize(buf)?,
+        })
+    }
+}
+impl borsh::ser::BorshSerialize for Counter
+where
+    i8: borsh::ser::BorshSerialize,
+{
+    fn serialize&lt;W: borsh::maybestd::io::Write&gt;(
+        &amp;self,
+        writer: &amp;mut W,
+    ) -&gt; ::core::result::Result&lt;(), borsh::maybestd::io::Error&gt; {
+        borsh::BorshSerialize::serialize(&amp;self.val, writer)?;
+        Ok(())
+    }
+}
+
+</code></pre>
+</details>
+<h2 id="full-implementation"><a class="header" href="#full-implementation">Full implementation</a></h2>
+<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:14:34}}
+</code></pre>
+<p>In Rust, you can use <code>//</code> for regular comments and <code>///</code> for <a href="https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments">documentation comments</a>, which will automatically be turned into documentation by various tooling.</p>
+<h2 id="digging-deeper"><a class="header" href="#digging-deeper">Digging deeper</a></h2>
+<p>Look again at the view function <code>get_num</code>. It returns an <code>i8</code>. However, any call to a NEAR contract happens via <a href="https://docs.near.org/docs/api/overview#rpc-api">Remote Procedure Calls</a>, and this <code>i8</code> needs to be serialized into something the consumer can read. By default, <code>near_bindgen</code> generates code to serialize it into a JSON number, since this is the most common case, e.g. a web app calling <code>get_num</code>. If you really need to, you can override this setting. For example, this would serialize it to Borsh instead:</p>
+<pre><code class="language-rust noplayground ignore">#[result_serializer(borsh)]
+pub fn get_num(&amp;self) -&gt; i8 {
+    self.val
+}
+</code></pre>
+<p>This can be useful in a couple cases:</p>
+<ul>
+<li><a href="https://docs.near.org/docs/concepts/gas">gas</a>-intensive contract methods that need to optimize every detail</li>
+<li>methods only used in <a href="https://docs.near.org/docs/tutorials/contracts/cross-contract-calls">cross-contract call</a> logic, where no external consumers are expected or allowed</li>
+</ul>
+<p>However, most of the time you will probably want to stick with the default JSON result serialization, to make it easier for apps to interact with your contract.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="using-raen"><a class="header" href="#using-raen">Using RAEN</a></h2>
+<p>Now we can finally use RAEN to build our contract!</p>
+<!-- Add instructions for cloning the examples repo; -->
+<p>From within the <code>counter</code> directory use the build command:</p>
+<pre><code class="language-bash">raen build --release
+</code></pre>
+<p>This creates a new <a href="https://webassembly.org/">Wasm</a> binary file in <code>./target/res/counter_contract.wasm</code>. This Wasm file has a <a href="https://webassembly.github.io/spec/core/appendix/custom.html">Custom Section</a> that explains its interfaces in a way other tooling can use. And the best part: even with this extra information embedded in the Wasm binary, the final result still comes out smaller than contracts built without RAEN, thanks to smart compression. (If you're unaccustomed to considering server-side code size, it's time to start building a new habit. Blockchains are space-constrained, and you'll need to pay for <a href="https://docs.near.org/docs/concepts/storage-staking">storage costs</a>.)</p>
+<h2 id="deploying"><a class="header" href="#deploying">Deploying</a></h2>
+<pre><code class="language-bash">near dev-deploy --wasmFile ./target/res/counter_contract.wasm
+</code></pre>
+<p>This will create a new throwaway NEAR account on testnet and deploy the contract to that address.</p>
+<p>Copy this address and head over to <a href="https://raen.dev/admin">raen.dev/admin</a> to interact with the contract.</p>
+<p>Like a good cooking show, the contract has already be deployed to <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="using-raen-admin"><a class="header" href="#using-raen-admin">Using RAEN Admin</a></h1>
+<p>Now that your RAEN-built contract provides interface information, <a href="https://raen.dev/admin">RAEN Admin</a> can use it to generate a complete interactive form.</p>
+<p>If you followed along and published your own contract, enter its address in RAEN Admin. Otherwise, you can follow along with <a href="https://raen.dev/admin/#/counter.raendev.testnet"><code>counter.raendev.testnet</code></a>.</p>
+<h2 id="view-methods"><a class="header" href="#view-methods">View Methods</a></h2>
+<p>First, notice on the top left that you have a login button and a list of view methods</p>
+<p><img src="counter/images/view.png" alt="View Methods" /></p>
+<p>Clicking on <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> will immediately call the view method since it has no arguments.</p>
+<p>You can also notice that the comment from the code is displayed, helping to describe the method.</p>
+<p><img src="counter/images/get_num.png" alt="Get Num" /></p>
+<hr />
+<h2 id="change-methods"><a class="header" href="#change-methods">Change Methods</a></h2>
+<p>Below View Methods, you'll see Change Methods.</p>
+<p><img src="counter/images/change.png" alt="Change Calls" /></p>
+<p>Let's pick <a href="https://raen.dev/admin/#/counter.raendev.testnet/Increment"><code>increment</code></a>.</p>
+<p><img src="counter/images/increment.png" alt="increment" /></p>
+<p>Again you can see the comments from the code. However, now there are two new fields in the form. </p>
+<ul>
+<li><code>attachedDeposit</code> is how much near you want to attach to the transaction; it is in <a href="https://en.wikipedia.org/wiki/Yocto-">yocto</a>Near, which is the smallest unit of NEAR (<code>1N = 1000000000000000000000000 yN</code> or <code>10^24</code>).</li>
+<li><code>gas</code> is how much gas to attach to cover the execution costs. It is in <a href="https://docs.near.org/docs/concepts/gas">units of gas</a>, here 30 <a href="https://en.wikipedia.org/wiki/Tera-">Tera</a>Gas—more than enough for this transaction.</li>
+</ul>
+<p>You will need to sign in to submit this form. If you don't have a NEAR <a href="https://docs.near.org/docs/concepts/networks#testnet">testnet</a> account, NEAR Wallet will guide you through creating one. Pro tip: select Email Recovery. It's plenty safe for testnet, and will greatly simplify recovering your account and using it in multiple browsers.</p>
+<p>Once you sign in and submit the <code>increment</code> form, you can revisit <a href="https://raen.dev/admin/#/counter.raendev.testnet/GetNum"><code>get_num</code></a> and see that it is now <code>0</code> (unless someone else already changed it again).</p>
+<h2 id="digging-deeper-look-no-near-wallet-confirmation"><a class="header" href="#digging-deeper-look-no-near-wallet-confirmation">Digging deeper: look, no NEAR Wallet confirmation</a></h2>
+<p>If you're used to Ethereum apps, you may be surprised that submitting the <code>increment</code> form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.</p>
+<p>NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: <a href="https://docs.near.org/docs/concepts/gas">negligible and predictable transaction fees</a>, also called <em>gas</em> fees. And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?</p>
+<p>Here is what actually happens when you sign in with NEAR:</p>
+<ul>
+<li>
+<p>NEAR Wallet adds a new <a href="https://docs.near.org/docs/concepts/access-keys">FunctionCall Access Key</a> to your account. You can see this listed in the &quot;Recent activity&quot; section on <a href="https://wallet.testnet.near.org">wallet.testnet.near.org</a>. In a nutshell:</p>
+<ul>
+<li>This key can ONLY make calls to the <code>counter.raendev.testnet</code> contract (or your version of it)</li>
+<li>This key has an allowance of <strong>0.25 NEAR</strong> that it can spend on transaction fees on your behalf. If you use RAEN Admin for long enough to exhaust this allowance, every call to a Change Method will start redirecting to NEAR Wallet.</li>
+<li>If a transaction has an <code>attachedDeposit</code>, no matter how small, it WILL require explicit user confirmation.</li>
+</ul>
+</li>
+<li>
+<p>NEAR Wallet redirects to the previous URL at <code>raen.dev/admin</code>, adding some extra URL parameters with information about this new Access Key.</p>
+</li>
+<li>
+<p><code>raen.dev/admin</code>, using default behavior in <a href="https://docs.near.org/docs/api/javascript-library">near-api-js</a>, adds this key to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a> in your browser. If you know your way around your browser's <a href="https://developer.chrome.com/docs/devtools/storage/localstorage/">Web Inspector</a>, you can use it to see your key (be careful! this is a private key! but also it can only call <code>counter.raendev.testnet</code> and can only spend 0.25 NEAR, so maybe you don't need to be <em>too</em> careful).</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="basic-status-message-contract"><a class="header" href="#basic-status-message-contract">Basic Status Message Contract</a></h1>
+<p>Previously the contract had state that was shared by any account that can call the contract. Next we will show how each account can get its own state within the contract.</p>
+<h2 id="signer-account"><a class="header" href="#signer-account">Signer Account</a></h2>
+<p>All change calls need to be signed by an account, this proves that no other account made the transaction. From the contract's perspective, when executing it has access to the current context which includes the <code>signer</code> account id.</p>
+<p>Since this account id is unique to the signer it can be used as a key in storage. Let's take a look.</p>
+<h3 id="env-accountid-and-lookupmap"><a class="header" href="#env-accountid-and-lookupmap"><code>env</code>, <code>AccountId</code>, and <code>LookupMap</code></a></h3>
+<pre><code class="language-rust noplayground ignore">use near_sdk::{
+    borsh::{self, BorshDeserialize, BorshSerialize},
+    collections::LookupMap,
+    env, near_bindgen, AccountId,
+};
+
+</code></pre>
+<p><code>env</code> provides functions for interacting with the NEAR blockchain. This includes <code>env::signer_account_id()</code>, which as you expect returns the account id of the signer.</p>
+<p><code>AccountId</code> is a wrapper type around <code>String</code>. Using it ensures that you won't use a malformed account id.</p>
+<p><code>LookupMap</code> is our first experience with a persistent data structure. You can think of them like corresponding data structures that have their data in storage. In this case <code>LookupMap</code> is like a <code>HashMap</code>, but the keys are contract storage keys and values are written to storage.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contract-state"><a class="header" href="#contract-state">Contract State</a></h1>
+<p>Let's take a look at the struct that defines the contract:</p>
+<pre><code class="language-rust noplayground ignore">#[near_bindgen]
+#[derive(BorshDeserialize, BorshSerialize)]
+pub struct StatusMessage {
+    records: LookupMap&lt;AccountId, String&gt;,
+}
+</code></pre>
+<p>This struct has one field <code>records</code>; a <code>LookupMap</code> that maps <code>AccountId</code>s to <code>String</code>s.</p>
+<p>You will also notice that this contract doesn't implement <code>Default</code>. This is because we are going to implement it ourselves!</p>
+<pre><code class="language-rust noplayground ignore">impl Default for StatusMessage {
+    fn default() -&gt; Self {
+        Self {
+            records: LookupMap::new(b&quot;r&quot;),
+        }
+    }
+}
+</code></pre>
+<p>This is how you create an implementation that fulfills a trait. In this case there is one function, <code>default</code>, which returns <code>Self</code>, which is a shorthand for the type implementing the trait, in this case <code>StatusMessage</code>.</p>
+<p>When the contract executions it first loads the contract's state from storage. If no state exists it calls <code>StatusMessage::default()</code> to get the initial instance.</p>
+<h1 id="new"><a class="header" href="#new"><code>new</code></a></h1>
+<p>You might be familiar with constructors in other languages. Rust has no concept of a constructor, but it is common to have a function called <code>new</code> to create an instance of a type.</p>
+<p>In this case, <code>LookupMap::new(b&quot;r&quot;)</code> creates a new <code>LookupMap</code>. <code>b&quot;r&quot;</code> is byte representation of the string <code>&quot;r&quot;</code>, which is used as a prefix before any keys. For example, <code>eve.testnet</code> --&gt; <code>reve.testnet</code>.  This creates a namespace for this data structure as long as this prefix is unique.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contract-methods"><a class="header" href="#contract-methods">Contract Methods</a></h1>
+<p>In this case we will just have two methods, <code>set_status</code> and <code>get_status</code>.</p>
+<h2 id="set_status"><a class="header" href="#set_status"><code>set_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn set_status(&amp;mut self, message: String) {
+        let account_id = env::signer_account_id();
+        self.records.insert(&amp;account_id, &amp;message);
+    }
+</code></pre>
+<p>Unlike the counter this method takes an argument, <code>meassage</code> which is a <code>String</code>. This message is then inserted into the map, which writes it to storage. You'll notice a <code>&amp;</code>, <a href="status-message/simple/../../counter/impl.html#self">which learned about in the previous chapter</a>, this is how we pass a reference to <code>insert</code>, which will then be able to read the <code>String</code> to write it to storage.</p>
+<h2 id="get_status"><a class="header" href="#get_status"><code>get_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn get_status(&amp;self, account_id: String) -&gt; Option&lt;String&gt; {
+        self.records.get(&amp;account_id.parse().unwrap())
+    }
+</code></pre>
+<p>Here is our first example of an <code>Option</code> type. An Option is other some value or nothing, <code>Option::Some(value), Option::None</code>. This is the same as <code>null</code> in other languages. <code>records.get</code> will return <code>None</code> if the account was not in the map. This function will then return <code>None</code>.</p>
+<p>We also need to convert the string <code>account_id</code> to an <code>AccountId</code>. There is a <code>parse</code> method, which returns will potentially fail if the <code>account_id</code> is invalid. In rust this is a <code>Result</code>, which either has a value or an error. <code>unwrap</code> let's us access the value and will panic and exit if there was an error.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-a-blank-status"><a class="header" href="#getting-a-blank-status">Getting a blank status</a></h1>
+<p>Let's return to the admin panel this time for <code>simple.statusmessage.raendev.testnet</code>.</p>
+<p>First, let's try getting the status message for an account that definitely won't have one.  We should get back <code>null</code>, JavaScript's version of <code>Option::None</code>. This</p>
+<p>Use the following link:</p>
+<p><a href="https://raen.dev/admin/#/simple.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522aa%2522%257D%257D"><code>raen.dev/admin/#/simple.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522aa%2522%257D%257D</code></a></p>
+<p>You'll notice that the link has some extra args at the end. This is the form data that will automatically fill in the form and since this is a view method it execute the call immediately.</p>
+<h2 id="setting-a-status"><a class="header" href="#setting-a-status">Setting a status</a></h2>
+<p><a href="https://raen.dev/admin/#/simple.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/simple.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<p>Next, return to <a href="https://raen.dev/admin/#/simple.statusmessage.raendev.testnet/GetStatus"><code>get_status</code></a>, but this time with your own testnet account.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-a-new-message-struct"><a class="header" href="#adding-a-new-message-struct">Adding a new <code>Message</code> struct</a></h1>
+<p>We just say how to make a message that was a <code>String</code>, but that is a little boring. Let's make a <code>Message</code> with a body and a title.</p>
+<pre><code class="language-rust noplayground ignore">pub struct Message {
+    title: String,
+    body: String,
+}
+</code></pre>
+<p>Next we need to update contract's state struct.</p>
+<pre><code class="language-rust noplayground ignore">pub struct StatusMessage {
+    records: LookupMap&lt;AccountId, Message&gt;,
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="updating-the-methods"><a class="header" href="#updating-the-methods">Updating the Methods</a></h1>
+<p>Now we need to update our methods so that we can pass two <code>String</code>s instead of just one.</p>
+<h2 id="set_status-1"><a class="header" href="#set_status-1"><code>set_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn set_status(&amp;mut self, title: String, body: String) {
+        let account_id = env::signer_account_id();
+        self.records.insert(&amp;account_id, &amp;Message { title, body });
+    }
+</code></pre>
+<p>One thing to note is <code>Message { title, body }</code>, this is how you can directly create a message without using a <code>new</code> function like we saw earlier.</p>
+<h2 id="get_status-1"><a class="header" href="#get_status-1"><code>get_status</code></a></h2>
+<pre><code class="language-rust noplayground ignore">    pub fn get_status(&amp;self, account_id: AccountId) -&gt; Option&lt;String&gt; {
+        self.records
+            .get(&amp;account_id)
+            .map(|Message { body, title }| format!(r#&quot;{{&quot;body&quot;:&quot;{body}&quot;, &quot;title&quot;: &quot;{title}&quot;}}&quot;#))
+    }
+</code></pre>
+<p>Before <code>account_id</code> was a <code>String</code>, but now we can use <code>AccountId</code> directly which will panic the contract if the account id is not valid.</p>
+<p>Next we have a new function <a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.map">map</a>, which is a method <code>Option</code>. And a new syntax <code>|Message { body, title}|</code>. </p>
+<p><code>map</code> is a function takes a function as argument. Then if the Option is not <code>None</code> it will pass the inner value to the function. In Rust an anonymous rust has the following syntax, <code>|x| x + 1</code>, if you are familiar with JavaScript it is like an arrow function <code>(x) =&gt; x + 1</code>.</p>
+<p>Rust let's you ~destructure~ the argument passed to the function.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>|Message { body, title }| format!(r#&quot;{{&quot;body&quot;:&quot;{body}&quot;, &quot;title&quot;: &quot;{title}&quot;}}&quot;#))
+
+// Is the same as the function
+|msg| {
+  let body = msg.body;
+  let title = msg.title;
+  format!(r#&quot;{{&quot;body&quot;:&quot;{body}&quot;, &quot;title&quot;: &quot;{title}&quot;}}&quot;#)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>Lastly, we are creating a String that represents the JSON representation of <code>Message</code>, later we won't have to do this by hand.</p>
+<p><code>format!</code> is a macro for injecting strings into another in this case <code>{body}</code> and <code>{title}</code> are replaced by the corresponding variables.</p>
+<p><code>r#&quot;..&quot;#</code> is called a raw string, which let's us use a <code>&quot;</code> from within the string. And we need two <code>{{</code> and <code>}}</code> so that <code>format!</code> understands that it's actually a <code>{</code> or <code>}</code> in the <code>String</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="admin-round-two"><a class="header" href="#admin-round-two">Admin Round Two</a></h1>
+<p>Let's return to the admin panel this time for <code>intermediate.statusmessage.raendev.testnet</code>.</p>
+<h2 id="setting-a-status-1"><a class="header" href="#setting-a-status-1">Setting a status</a></h2>
+<p>Now there will two input boxes in the form:</p>
+<p><a href="https://raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<h2 id="get-status-message"><a class="header" href="#get-status-message">Get Status Message</a></h2>
+<p>Here is an example for eve.testnet:</p>
+<p><a href="https://raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522eve.testnet%2522%257D%257D">https://raen.dev/admin/#/intermediate.statusmessage.raendev.testnet/GetStatus?data=%257B%2522args%2522%253A%257B%2522account_id%2522%253A%2522eve.testnet%2522%257D%257D</a></p>
+<p>Now the status should return a <code>String</code> of the JSON like</p>
+<pre><code class="language-json">&quot;{\&quot;title\&quot;: \&quot;hello\&quot;, \&quot;body\&quot;: \&quot;world\&quot;}&quot;
+</code></pre>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next steps</a></h2>
+<p>Now let's take this a step further and use <code>Message</code> directly.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-message"><a class="header" href="#advanced-message">Advanced Message</a></h1>
+<p>Having to pass two arguments to create the Message is annoying, why not pass the Message directly!</p>
+<p>First let's add some documentation to the struct:</p>
+<pre><code class="language-rust noplayground ignore">/// A simple message with a title
+#[derive(BorshDeserialize, BorshSerialize, Deserialize, Serialize)]
+#[serde(crate = &quot;near_sdk::serde&quot;)]
+#[witgen]
+pub struct Message {
+    /// Title that describes the message
+    title: String,
+    /// body of the  message
+    body: String,
+}
+</code></pre>
+<p><code>Deserialize</code> and <code>Serialize</code> are now needed to allow the <code>Message</code> to be parsed to and from JSON.</p>
+<h2 id="update-methods"><a class="header" href="#update-methods">Update methods</a></h2>
+<pre><code class="language-rust noplayground ignore">#[near_bindgen]
+impl StatusMessage {
+    pub fn set_status(&amp;mut self, message: Message) {
+        let account_id = env::signer_account_id();
+        self.records.insert(&amp;account_id, &amp;message);
+    }
+
+    pub fn get_status(&amp;self, account_id: AccountId) -&gt; Option&lt;Message&gt; {
+        self.records.get(&amp;account_id)
+    }
+}
+</code></pre>
+<p>Now we have <code>Message</code> as a argument to <code>set_status</code> and don't need to convert <code>Message</code> manually when returning it from <code>get_status</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="witgen"><a class="header" href="#witgen"><code>witgen</code></a></h1>
+<p>We just breezed by the following line:</p>
+<pre><code class="language-rust noplayground ignore">#[witgen]
+</code></pre>
+<p><code>witgen</code> is a special macro needed generate a type definition for user made types like <code>Message</code>.</p>
+<p>We also skipped the line that imported the macro:</p>
+<pre><code class="language-rust noplayground ignore">use witgen::witgen;
+</code></pre>
+<p>The <a href="https://github.com/bnjjj/witgen">witgen</a> crate is</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="admin-round-three"><a class="header" href="#admin-round-three">Admin Round Three</a></h1>
+<p>Let's return to setting a message and see what's different.</p>
+<p><a href="https://raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<p>Here is where raen really raen really shines.</p>
+<p>The method's documentation and the types documentation are available.  You can think of this as interactive documentation.</p>
+<h2 id="getting-status"><a class="header" href="#getting-status">Getting Status</a></h2>
+<p>Next since we are using <code>AccountId</code> the type is available to the form. Meaning the the form can validate an account id before submitting it, preventing the call from failing on the NEAR node:</p>
+<p><a href="https://raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus"><code>raen.dev/admin/#/advanced.statusmessage.raendev.testnet/SetStatus</code></a></p>
+<p>You will also notice that now we don't get a string but a JSON object.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_line_numbers = true;
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

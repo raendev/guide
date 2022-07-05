@@ -9,6 +9,8 @@
   - [Final Code](./counter/final_code.md)
   - [Using RAEN](./counter/working_with_contract.md)
   - [RAEN Admin](./counter/admin.md)
+  - [Updating the contract](./counter/updating.md)
+  - [Summary](./counter/summary.md)
 
 - [Status Message](./status-message/intro.md)
   - [Defining the data](./status-message/simple/simple.md)

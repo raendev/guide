@@ -46,14 +46,14 @@
 6. Clone the Examples repository:
 
    ```bash
-   git clone --depth 1 --branch v0.0.3 https://github.com/raendev/examples.git --recursive raen-examples
+   git clone --depth 1 --branch v0.0.4 https://github.com/raendev/examples.git --recursive raen-examples
    ```
 
    This will clone [github.com/raendev/examples](https://github.com/raendev/examples) to a folder called `raen-examples`.
 
 7. Build with RAEN.
 
-   Change into `raen-examples/contracts/rust-counter`, then build:
+   Change into `raen-examples/contracts/counter`, then build:
 
    ```bash
    raen build --release
@@ -65,4 +65,4 @@
 
 8. Open an example.
 
-   We're going to start with `raen-examples/contracts/rust-counter`. Open this folder in your editor. Let's take a look around.
+   We're going to start with `raen-examples/contracts/counter`. Open this folder in your editor. Let's take a look around.

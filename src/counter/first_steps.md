@@ -3,7 +3,7 @@
 First the contract's state, what will be written to storage, needs to be defined.
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:10:12}}
+{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
 ```
 
 ### `struct`

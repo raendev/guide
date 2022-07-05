@@ -9,7 +9,7 @@ The simplest example of this is a counter. A contract that can read, increment, 
 First the contract's state, what will be written to storage, needs to be defined.
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:10:12}}
+{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
 ```
 
 A struct in Rust defines a data structure with fields.  You might have seen a class or an object in JS. Unlike other languages, the data structure has no methods attached to it, rather it just defines the shape.
@@ -24,5 +24,5 @@ This means once `val` is incremented to `127`, the next time it will wrap around
 Rust does allow you to attach methods to the data.  This is done with an implementation (`impl`).  Let's add a method to return the field `val`.
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs:15:18}}
+{{#include ../../examples/contracts/counter/src/lib.rs:15:18}}
 ```

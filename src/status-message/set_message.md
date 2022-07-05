@@ -1,5 +1,5 @@
 
 
 ```rust,noplayground,ignore
-{{#include ../../examples/contracts/rust-counter/contract/src/lib.rs}}
+{{#include ../../examples/contracts/counter/src/lib.rs}}
 ```

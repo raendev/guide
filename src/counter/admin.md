@@ -26,10 +26,10 @@ Below View Methods, you'll see Change Methods.
 
 ![Change Calls](images/change.png)
 
-Let's pick [`reset`](https://raen.dev/admin/#/counter.raendev.testnet/Reset).
+Let's pick [`increment`](https://raen.dev/admin/#/counter.raendev.testnet/Increment).
 
 
-![reset](images/reset.png)
+![increment](images/increment.png)
 
 
 Again you can see the comments from the code. However, now there are two new fields in the form. 
@@ -39,11 +39,11 @@ Again you can see the comments from the code. However, now there are two new fie
 
 You will need to sign in to submit this form. If you don't have a NEAR [testnet](https://docs.near.org/docs/concepts/networks#testnet) account, NEAR Wallet will guide you through creating one. Pro tip: select Email Recovery. It's plenty safe for testnet, and will greatly simplify recovering your account and using it in multiple browsers.
 
-Once you sign in and submit the `reset` form, you can revisit [`get_num`](https://raen.dev/admin/#/counter.raendev.testnet/GetNum) and see that it is now `0` (unless someone else already changed it again).
+Once you sign in and submit the `increment` form, you can revisit [`get_num`](https://raen.dev/admin/#/counter.raendev.testnet/GetNum) and see that it is now `0` (unless someone else already changed it again).
 
 ## Digging deeper: look, no NEAR Wallet confirmation
 
-If you're used to Ethereum apps, you may be surprised that submitting the `reset` form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.
+If you're used to Ethereum apps, you may be surprised that submitting the `increment` form didn't require any confirmation to spend your testnet NEAR tokens on transaction fees.
 
 NEAR prioritizes both developer and user experience. One way it accomplishes good user experience: [negligible and predictable transaction fees](https://docs.near.org/docs/concepts/gas), also called _gas_ fees. And then, if gas fees are negligible for most transactions, why bother requiring user confirmation over and over and over?
 

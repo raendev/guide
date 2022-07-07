@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="intro/who-is-this-for.html"><strong aria-hidden="true">1.1.</strong> Who is this for?</a></li><li class="chapter-item expanded "><a href="intro/getting-set-up.html"><strong aria-hidden="true">1.2.</strong> Getting Set Up</a></li></ol></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">2.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">2.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">2.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">2.3.</strong> Final Code</a></li><li class="chapter-item expanded "><a href="counter/working_with_contract.html"><strong aria-hidden="true">2.4.</strong> Using RAEN</a></li><li class="chapter-item expanded "><a href="counter/admin.html"><strong aria-hidden="true">2.5.</strong> RAEN Admin</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intro.html"><strong aria-hidden="true">3.</strong> Status Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/simple/simple.html"><strong aria-hidden="true">3.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="status-message/simple/methods.html"><strong aria-hidden="true">3.2.</strong> Contract Methods</a></li><li class="chapter-item expanded "><a href="status-message/simple/admin.html"><strong aria-hidden="true">3.3.</strong> Set & Get Status</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intermediate/addding_message.html"><strong aria-hidden="true">4.</strong> Intermediate Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/intermediate/methods.html"><strong aria-hidden="true">4.1.</strong> Updating Methods</a></li><li class="chapter-item expanded "><a href="status-message/intermediate/admin.html"><strong aria-hidden="true">4.2.</strong> Set & Get Status Part 2</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/advanced/intro.html"><strong aria-hidden="true">5.</strong> Advanced Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/advanced/witgen.html"><strong aria-hidden="true">5.1.</strong> Using witgen</a></li><li class="chapter-item expanded "><a href="status-message/advanced/admin.html"><strong aria-hidden="true">5.2.</strong> Set & Get Status Part 3</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Expert Message</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="intro/who-is-this-for.html"><strong aria-hidden="true">1.1.</strong> Who is this for?</a></li><li class="chapter-item expanded "><a href="intro/getting-set-up.html"><strong aria-hidden="true">1.2.</strong> Getting Set Up</a></li></ol></li><li class="chapter-item expanded "><a href="counter/intro.html"><strong aria-hidden="true">2.</strong> Counter</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="counter/first_steps.html"><strong aria-hidden="true">2.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="counter/impl.html"><strong aria-hidden="true">2.2.</strong> Implementation</a></li><li class="chapter-item expanded "><a href="counter/final_code.html"><strong aria-hidden="true">2.3.</strong> Final Code</a></li><li class="chapter-item expanded "><a href="counter/working_with_contract.html"><strong aria-hidden="true">2.4.</strong> Using RAEN</a></li><li class="chapter-item expanded "><a href="counter/admin.html"><strong aria-hidden="true">2.5.</strong> RAEN Admin</a></li><li class="chapter-item expanded "><a href="counter/updating.html"><strong aria-hidden="true">2.6.</strong> Updating the contract</a></li><li class="chapter-item expanded "><a href="counter/summary.html"><strong aria-hidden="true">2.7.</strong> Summary</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intro.html"><strong aria-hidden="true">3.</strong> Status Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/simple/simple.html"><strong aria-hidden="true">3.1.</strong> Defining the data</a></li><li class="chapter-item expanded "><a href="status-message/simple/methods.html"><strong aria-hidden="true">3.2.</strong> Contract Methods</a></li><li class="chapter-item expanded "><a href="status-message/simple/admin.html"><strong aria-hidden="true">3.3.</strong> Set & Get Status</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/intermediate/addding_message.html"><strong aria-hidden="true">4.</strong> Intermediate Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/intermediate/methods.html"><strong aria-hidden="true">4.1.</strong> Updating Methods</a></li><li class="chapter-item expanded "><a href="status-message/intermediate/admin.html"><strong aria-hidden="true">4.2.</strong> Set & Get Status Part 2</a></li></ol></li><li class="chapter-item expanded "><a href="status-message/advanced/intro.html"><strong aria-hidden="true">5.</strong> Advanced Message</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="status-message/advanced/witgen.html"><strong aria-hidden="true">5.1.</strong> Using witgen</a></li><li class="chapter-item expanded "><a href="status-message/advanced/admin.html"><strong aria-hidden="true">5.2.</strong> Set & Get Status Part 3</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Expert Message</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -403,6 +403,68 @@ pub fn get_num(&amp;self) -&gt; i8 {
 <p><code>raen.dev/admin</code>, using default behavior in <a href="https://docs.near.org/docs/api/javascript-library">near-api-js</a>, adds this key to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a> in your browser. If you know your way around your browser's <a href="https://developer.chrome.com/docs/devtools/storage/localstorage/">Web Inspector</a>, you can use it to see your key (be careful! this is a private key! but also it can only call <code>counter.raendev.testnet</code> and can only spend 0.25 NEAR, so maybe you don't need to be <em>too</em> careful).</p>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="updating-the-contract"><a class="header" href="#updating-the-contract">Updating the contract</a></h1>
+<p><a href="counter/./first_steps.html">Earlier</a> we said that if an <code>i8</code> is currently <code>127</code> and you increment it again, it will <em>overflow</em>, becoming <code>-128</code>. Likewise, it can <em>underflow</em> if currently <code>-128</code> and you decrement.</p>
+<p>Let's see if we can make <code>val</code> overflow! And then let's see how to prevent this.</p>
+<h1 id="method-1-mash-increment-128-times"><a class="header" href="#method-1-mash-increment-128-times">Method 1: mash <code>increment</code> 128 times</a></h1>
+<p>With the existing contract, you could use the RAEN Admin panel and mash the Submit button on the <code>increment</code> form 128 times.</p>
+<p>This could take a while, though! Let's see if we can improve the code to make it easier.</p>
+<h1 id="method-2-new-default"><a class="header" href="#method-2-new-default">Method 2: new <code>default</code></a></h1>
+<p>If you're following along with your own contract, you can change the default value of <code>val</code> to start at <code>127</code> rather than <code>0</code>. This is a good way to learn about where the default of <code>0</code> currently comes from.</p>
+<p>If you get stuck while following along, you can see this method and the following all implemented on <a href="https://github.com/raendev/examples/pull/4/files">this branch</a>.</p>
+<p>Above <code>pub struct Counter</code>, change the <code>derive</code> macro by removing the <code>Default</code> trait:</p>
+<pre><code class="language-diff">-#[derive(Default, BorshDeserialize, BorshSerialize)]
++#[derive(BorshDeserialize, BorshSerialize)]
+</code></pre>
+<p>Now, below the closing bracket of <code>pub struct Counter</code>, you can implement <code>default</code> manually:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Counter {
+    val: i8,
+}
+
+impl Default for Counter {
+    fn default() -&gt; Self {
+        Self { val: 127 }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="if-youre-following-along"><a class="header" href="#if-youre-following-along">If you're following along</a></h2>
+<p>If you're following along with your own code, you can build and re-deploy to see the new default:</p>
+<pre><code class="language-bash">raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+</code></pre>
+<p>(This <a href="https://stackoverflow.com/a/42631216/249801">uses xargs to</a> pipe the output of <code>raen build</code> to the <code>wasmFile</code> argument of <code>near dev-deploy</code>.)</p>
+<p>If you've already incremented or decremented the number, though, you'll see that this made no change. Which is what you'd expect! It only changes the <em>default</em>. That is, the value that is shown if you didn't actually change it and store the new value.</p>
+<p>To see this default in action, you can delete the <code>neardev</code> folder and run the <code>dev-deploy</code> command again. This will create a brand new NEAR testnet account before deploying your contract.</p>
+<p>Paste this new account name into RAEN Admin, check <code>get_num</code>, and see the number you set as a default! Call <code>increment</code> (you'll need to sign in again, since this is a new contract.)</p>
+<h2 id="if-youre-not"><a class="header" href="#if-youre-not">If you're not</a></h2>
+<p>The contract deployed at <a href="https://raen.dev/admin/#/counter.raendev.testnet">counter.raendev.testnet</a> already has a value for <code>val</code> saved to contract storage. It will not make use of a new default.</p>
+<p>Let's try a different way.</p>
+<h1 id="method-3-new-set_num"><a class="header" href="#method-3-new-set_num">Method 3: new <code>set_num</code></a></h1>
+<p>See if you can write your own <code>set_num</code> method based on the code for <code>increment</code> and <code>decrement</code> in the contract. If you need a hint, <a href="https://github.com/raendev/examples/pull/4/files">here's what it looks like</a>.</p>
+<h2 id="if-youre-following-along-1"><a class="header" href="#if-youre-following-along-1">If you're following along</a></h2>
+<p>Save your file with new <code>set_num</code>, then build and re-deploy:</p>
+<pre><code class="language-bash">raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+</code></pre>
+<p>Unlike Method 2, you don't need to create a new testnet account. Just refresh the RAEN Admin panel and see the <code>set_num</code> method appear under Change Methods. Go ahead and try it out!</p>
+<h2 id="if-youre-not-1"><a class="header" href="#if-youre-not-1">If you're not</a></h2>
+<p>The <a href="https://github.com/raendev/examples/pull/4/files">reference code</a> has been deployed to <a href="https://raen.dev/admin/#/v2.counter.raendev.testnet">v2.counter.raendev.testnet</a> for you to play with.</p>
+<p>Note that this code already fixed the overflow issue. If you want to see the overflow in action, you'll have to follow along with your own code.</p>
+<h1 id="fixing-that-overflow"><a class="header" href="#fixing-that-overflow">Fixing that overflow</a></h1>
+<p>Now you can call <code>increment</code> and see that the number goes from <code>127</code> to <code>-128</code>. Oops! How do we fix it?</p>
+<p>Open up the <code>Cargo.toml</code> file. <a href="https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html">Cargo.toml</a> is to Rust what <code>package.json</code> is to NodeJS. You'll see sections for <code>dependencies</code> and <code>dev-dependencies</code> and more generic information about this package/contract/crate.</p>
+<p>See those lines with <code>overflow-checks = false</code>? Change them to <code>overflow-checks = true</code>. Now rebuild and redeploy:</p>
+<pre><code class="language-bash">raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+</code></pre>
+<p>You'll see that this takes longer to build than when you make changes to your contract itself. Rust needs to recompile all of your dependencies using the new setting.</p>
+<p>Refresh your admin panel, set the number back to <code>127</code>, and call <code>increment</code>. You'll see an error message. This means the contract panicked rather than allowing the integer overflow. It worked!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="counter-summary"><a class="header" href="#counter-summary">Counter Summary</a></h1>
+<p>In this chapter we saw our first Rust code, a simple NEAR smart contract that implements a counter. Anyone can call <code>get_num</code> to see the current value, and anyone can sign in and call change methods to change the number.</p>
+<p>We saw how RAEN Admin makes it easy to interact with contracts built with RAEN. We dug deeper and saw how we can change the contract, re-deploy, and see that RAEN Admin will automatically show the latest version of the contract.</p>
+<p>We even investigated some more advanced Rust features, such as changing settings in <code>Cargo.toml</code> and implementing a custom <code>Default</code> rather than deriving it.</p>
+<p>Overall, this Counter was a good way to learn some Rust and NEAR basics, but pretty silly as a real contract. Next, let's take a look at an example that does something more useful, storing different information for every user who calls the contract.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-status-message-contract"><a class="header" href="#basic-status-message-contract">Basic Status Message Contract</a></h1>
 <p>Previously the contract had state that was shared by any account that can call the contract. Next we will show how each account can get its own state within the contract.</p>
 <h2 id="signer-account"><a class="header" href="#signer-account">Signer Account</a></h2>

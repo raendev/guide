@@ -141,7 +141,9 @@
                     <main>
                         <h2 id="defining-the-data"><a class="header" href="#defining-the-data">Defining the data</a></h2>
 <p>First the contract's state, what will be written to storage, needs to be defined.</p>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
+<pre><code class="language-rust noplayground ignore">pub struct Counter {
+    val: i8,
+}
 </code></pre>
 <h3 id="struct"><a class="header" href="#struct"><code>struct</code></a></h3>
 <p>A <code>struct</code> in Rust defines a data structure with fields, similar to a class, object, Hash, or Dictionary in other languages.</p>

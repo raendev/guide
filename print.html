@@ -221,7 +221,9 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <p>The simplest example of this is a counter. A contract that can read, increment, and decrement a value.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="defining-the-data"><a class="header" href="#defining-the-data">Defining the data</a></h2>
 <p>First the contract's state, what will be written to storage, needs to be defined.</p>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
+<pre><code class="language-rust noplayground ignore">pub struct Counter {
+    val: i8,
+}
 </code></pre>
 <h3 id="struct"><a class="header" href="#struct"><code>struct</code></a></h3>
 <p>A <code>struct</code> in Rust defines a data structure with fields, similar to a class, object, Hash, or Dictionary in other languages.</p>
@@ -237,12 +239,16 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="defining-the-implementation"><a class="header" href="#defining-the-implementation">Defining the implementation</a></h1>
 <p>To attach methods to a <code>struct</code> in Rust, use an <code>impl</code>. As a reminder, here's our struct from the last page:</p>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:10:12}}
+<pre><code class="language-rust noplayground ignore">pub struct Counter {
+    val: i8,
+}
 </code></pre>
 <h2 id="a-view-method"><a class="header" href="#a-view-method">A view method</a></h2>
 <p>Let's add a method to view the field <code>val</code>.</p>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
-{{#include ../../examples/contracts/counter/src/lib.rs:17:19}}
+<pre><code class="language-rust noplayground ignore">impl Counter {
+    pub fn get_num(&amp;self) -&gt; i8 {
+        self.val
+    }
     ...
 }
 </code></pre>
@@ -257,10 +263,14 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <p>This accesses the field <code>val</code>. You will also notice that there is no <code>return</code> statement. This is because in Rust everything is an expression, and a function returns the value of the last expression, as long as there is no semicolon after it.</p>
 <h2 id="a-change-method"><a class="header" href="#a-change-method">A change method</a></h2>
 <p>Next let's see how to mutate or change <code>val</code>. </p>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:15}}
+<pre><code class="language-rust noplayground ignore">impl Counter {
     ...
 
-{{#include ../../examples/contracts/counter/src/lib.rs:22:26}}
+    pub fn increment(&amp;mut self) -&gt; i8 {
+        self.val += 1;
+        log!(&quot;Increased number to {}&quot;, self.val);
+        self.val
+    }
   
     ...
 }
@@ -277,7 +287,8 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <div style="break-before: page; page-break-before: always;"></div><h1 id="final-code"><a class="header" href="#final-code">Final Code</a></h1>
 <p>Let's take a look at the full contract and go over details we skipped at first.</p>
 <h2 id="imports-from-near-sdk"><a class="header" href="#imports-from-near-sdk">Imports from <code>near-sdk</code></a></h2>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:5:6}}
+<pre><code class="language-rust noplayground ignore">use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
+use near_sdk::{log, near_bindgen};
 </code></pre>
 <h3 id="borsh"><a class="header" href="#borsh">Borsh</a></h3>
 <p>Borsh is <a href="https://borsh.io/">a serialization framework</a>, which deals with converting data into and from bytes. In the case of NEAR it is used for serializing data to be stored in the contract storage. For a Rust type to be Borsh Serializable it needs to implement <code>BorshSerialize</code> and <code>BorshDeserialize</code>.</p>
@@ -286,7 +297,11 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 <h3 id="near_bindgen"><a class="header" href="#near_bindgen"><code>near_bindgen</code></a></h3>
 <p>This is the real magic of <code>near-sdk</code>.  Like <code>log</code> it is a macro, but generates code for the whole contract.</p>
 <h2 id="contract-struct"><a class="header" href="#contract-struct">Contract struct</a></h2>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:8:12}}
+<pre><code class="language-rust noplayground ignore">#[near_bindgen]
+#[derive(Default, BorshDeserialize, BorshSerialize)]
+pub struct Counter {
+    val: i8,
+}
 </code></pre>
 <p><code>near_bindgen</code> here means that the contract's state comes from this struct.</p>
 <p><code>derive</code> is a built-in macro. Each item passed to <code>derive</code> is a <a href="https://doc.rust-lang.org/stable/book/ch10-02-traits.html">trait</a>:</p>
@@ -332,7 +347,27 @@ where
 </code></pre>
 </details>
 <h2 id="full-implementation"><a class="header" href="#full-implementation">Full implementation</a></h2>
-<pre><code class="language-rust noplayground ignore">{{#include ../../examples/contracts/counter/src/lib.rs:14:34}}
+<pre><code class="language-rust noplayground ignore">#[near_bindgen]
+impl Counter {
+    /// Public method: Returns the counter value.
+    pub fn get_num(&amp;self) -&gt; i8 {
+        self.val
+    }
+
+    /// Public method: Increment the counter.
+    pub fn increment(&amp;mut self) -&gt; i8 {
+        self.val += 1;
+        log!(&quot;Increased number to {}&quot;, self.val);
+        self.val
+    }
+
+    /// Public method: Decrement the counter.
+    pub fn decrement(&amp;mut self) -&gt; i8 {
+        self.val -= 1;
+        log!(&quot;Decreased number to {}&quot;, self.val);
+        self.val
+    }
+}
 </code></pre>
 <p>In Rust, you can use <code>//</code> for regular comments and <code>///</code> for <a href="https://doc.rust-lang.org/stable/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments">documentation comments</a>, which will automatically be turned into documentation by various tooling.</p>
 <h2 id="digging-deeper"><a class="header" href="#digging-deeper">Digging deeper</a></h2>

@@ -1,17 +1,32 @@
-# Welcome to RAEN 🌧
+# NEAR + Rust, the friendly way
 
-RAEN is a build tool for NEAR smart contracts.
+We couldn't find a good intro to both NEAR and Rust.
 
-With RAEN, you can:
+The [Rust Book](https://doc.rust-lang.org/book/) provides a wonderful intro to Rust, the [most-loved programming language](https://en.wikipedia.org/wiki/Rust_(programming_language)#Adoption) seven years running.
 
-* `build`: compile a contract, generate its Application Contract Interface (ACI), and inject it into a custom section of the contract's [WebAssembly](https://webassembly.org/) (Wasm) binary.
-* `fetch` _[coming soon]_: use the ACI of a deployed contract to generate source code bindings for cross contract calls and client interfaces.
+And some guides, cookbooks, and examples for [NEAR](https://near.org) with Rust are scattered here and there.
 
-NEAR works with any programming language that compiles to Wasm, but the most advanced NEAR SDK and documentation currently exist [for Rust](https://www.near-sdk.io/).
+These are useful. These are fine. Especially the Rust Book. We recommend you read it later.
 
-RAEN, too, is built around a [language-agnostic standard](https://github.com/bytecodealliance/wit-bindgen), but currently only works with contracts written in [Rust](https://www.rust-lang.org/).
+But none are what we wanted:
 
-This guide will introduce you to NEAR, Rust, and RAEN.
+- A quick intro to Rust, providing just enough depth to get you started on your Smart Contract journey;
+- A quick explainer of what Smart Contracts even are, and what sorts of problems they solve;
+- Examples you can "touch and feel" in the [RAEN Admin](https://raen.dev/admin) panel, so you get a quick feedback loop between modifying Rust code and actually using the resulting smart contract.
+
+That is, something like [RAEN](https://raen.dev) itself, built to help developers launch NEAR apps faster than they thought possible.
+
+So this is less a "guide to RAEN" and more a "guide to NEAR + Rust, the RAEN way."
+
+You'll be ready to get building faster than you think.
+
+This guide assumes you have experience with the command line and at least one programming language. That's it.
+
+<!--
+TODO: link to Status Message: Expert once it's complete
+
+If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Message Expert](./status-message/expert/intro.md).
+-->
 
 ### About the name
 

@@ -471,7 +471,7 @@ impl Default for Counter {
 <p>If you're following along with your own code, you can build and re-deploy to see the new default:</p>
 <pre><code class="language-bash">near dev-deploy $(raen build --release -q)
 </code></pre>
-<p>(This <a href="https://stackoverflow.com/a/23656236/249801">uses <code>bash</code> interpolation</a> put the output of <code>raen build</code> in the correct spot in the <code>near dev-deploy</code> command. You can try <code>raen build --release</code> and <code>raen build --release -q</code> on their own to understand the compound command.)</p>
+<p>(This <a href="https://hyperpolyglot.org/unix-shells#cmd-subst-note">command substitution</a> to put the output of <code>raen build</code> in the correct spot in the <code>near dev-deploy</code> command, which will only work in <code>bash</code> and similar shells. You can try <code>raen build --release</code> and <code>raen build --release -q</code> on their own to understand the compound command.)</p>
 <p>If you've already incremented or decremented the number, though, you'll see that this made no change. Which is what you'd expect! It only changes the <em>default</em>. That is, the value that is shown if you didn't actually change it and store the new value.</p>
 <p>To see this default in action, you can delete the <code>neardev</code> folder and run the <code>dev-deploy</code> command again. This will create a brand new NEAR testnet account before deploying your contract.</p>
 <p>Paste this new account name into RAEN Admin, check <code>get_num</code>, and see the number you set as a default! Call <code>increment</code> (you'll need to sign in again, since this is a new contract.)</p>

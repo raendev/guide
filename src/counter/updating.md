@@ -2,7 +2,9 @@
 
 [Earlier](./first_steps.md) we said that if an `i8` is currently `127` and you increment it again, it will _overflow_, becoming `-128`. Likewise, it can _underflow_ if currently `-128` and you decrement.
 
-Let's see if we can make `val` overflow! And then let's see how to prevent this.
+This would obviously be **very bad news** if you were building your own smart-contract-based currency!
+
+Let's see if we can make `val` overflow. And then let's see how to prevent this.
 
 # Method 1: mash `increment` 128 times
 

@@ -42,10 +42,10 @@ impl Default for Counter {
 If you're following along with your own code, you can build and re-deploy to see the new default:
 
 ```bash
-raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+near dev-deploy $(raen build --release -q)
 ```
 
-(This [uses xargs to](https://stackoverflow.com/a/42631216/249801) pipe the output of `raen build` to the `wasmFile` argument of `near dev-deploy`.)
+(This [uses `bash` interpolation](https://stackoverflow.com/a/23656236/249801) put the output of `raen build` in the correct spot in the `near dev-deploy` command. You can try `raen build --release` and `raen build --release -q` on their own to understand the compound command.)
 
 If you've already incremented or decremented the number, though, you'll see that this made no change. Which is what you'd expect! It only changes the _default_. That is, the value that is shown if you didn't actually change it and store the new value.
 
@@ -68,7 +68,7 @@ See if you can write your own `set_num` method based on the code for `increment`
 Save your file with new `set_num`, then build and re-deploy:
 
 ```bash
-raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+near dev-deploy $(raen build --release -q)
 ```
 
 Unlike Method 2, you don't need to create a new testnet account. Just refresh the RAEN Admin panel and see the `set_num` method appear under Change Methods. Go ahead and try it out!
@@ -88,7 +88,7 @@ Open up the `Cargo.toml` file. [Cargo.toml](https://doc.rust-lang.org/cargo/guid
 See those lines with `overflow-checks = false`? Change them to `overflow-checks = true`. Now rebuild and redeploy:
 
 ```bash
-raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+near dev-deploy $(raen build --release -q)
 ```
 
 You'll see that this takes longer to build than when you make changes to your contract itself. Rust needs to recompile all of your dependencies using the new setting.

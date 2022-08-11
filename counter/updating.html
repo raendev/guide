@@ -141,7 +141,8 @@
                     <main>
                         <h1 id="updating-the-contract"><a class="header" href="#updating-the-contract">Updating the contract</a></h1>
 <p><a href="./first_steps.html">Earlier</a> we said that if an <code>i8</code> is currently <code>127</code> and you increment it again, it will <em>overflow</em>, becoming <code>-128</code>. Likewise, it can <em>underflow</em> if currently <code>-128</code> and you decrement.</p>
-<p>Let's see if we can make <code>val</code> overflow! And then let's see how to prevent this.</p>
+<p>This would obviously be <strong>very bad news</strong> if you were building your own smart-contract-based currency!</p>
+<p>Let's see if we can make <code>val</code> overflow. And then let's see how to prevent this.</p>
 <h1 id="method-1-mash-increment-128-times"><a class="header" href="#method-1-mash-increment-128-times">Method 1: mash <code>increment</code> 128 times</a></h1>
 <p>With the existing contract, you could use the RAEN Admin panel and mash the Submit button on the <code>increment</code> form 128 times.</p>
 <p>This could take a while, though! Let's see if we can improve the code to make it easier.</p>
@@ -169,9 +170,9 @@ impl Default for Counter {
 </span></code></pre></pre>
 <h2 id="if-youre-following-along"><a class="header" href="#if-youre-following-along">If you're following along</a></h2>
 <p>If you're following along with your own code, you can build and re-deploy to see the new default:</p>
-<pre><code class="language-bash">raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+<pre><code class="language-bash">near dev-deploy $(raen build --release -q)
 </code></pre>
-<p>(This <a href="https://stackoverflow.com/a/42631216/249801">uses xargs to</a> pipe the output of <code>raen build</code> to the <code>wasmFile</code> argument of <code>near dev-deploy</code>.)</p>
+<p>(This <a href="https://hyperpolyglot.org/unix-shells#cmd-subst-note">command substitution</a> to put the output of <code>raen build</code> in the correct spot in the <code>near dev-deploy</code> command, which will only work in <code>bash</code> and similar shells. You can try <code>raen build --release</code> and <code>raen build --release -q</code> on their own to understand the compound command.)</p>
 <p>If you've already incremented or decremented the number, though, you'll see that this made no change. Which is what you'd expect! It only changes the <em>default</em>. That is, the value that is shown if you didn't actually change it and store the new value.</p>
 <p>To see this default in action, you can delete the <code>neardev</code> folder and run the <code>dev-deploy</code> command again. This will create a brand new NEAR testnet account before deploying your contract.</p>
 <p>Paste this new account name into RAEN Admin, check <code>get_num</code>, and see the number you set as a default! Call <code>increment</code> (you'll need to sign in again, since this is a new contract.)</p>
@@ -182,7 +183,7 @@ impl Default for Counter {
 <p>See if you can write your own <code>set_num</code> method based on the code for <code>increment</code> and <code>decrement</code> in the contract. If you need a hint, <a href="https://github.com/raendev/examples/pull/4/files">here's what it looks like</a>.</p>
 <h2 id="if-youre-following-along-1"><a class="header" href="#if-youre-following-along-1">If you're following along</a></h2>
 <p>Save your file with new <code>set_num</code>, then build and re-deploy:</p>
-<pre><code class="language-bash">raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+<pre><code class="language-bash">near dev-deploy $(raen build --release -q)
 </code></pre>
 <p>Unlike Method 2, you don't need to create a new testnet account. Just refresh the RAEN Admin panel and see the <code>set_num</code> method appear under Change Methods. Go ahead and try it out!</p>
 <h2 id="if-youre-not-1"><a class="header" href="#if-youre-not-1">If you're not</a></h2>
@@ -192,7 +193,7 @@ impl Default for Counter {
 <p>Now you can call <code>increment</code> and see that the number goes from <code>127</code> to <code>-128</code>. Oops! How do we fix it?</p>
 <p>Open up the <code>Cargo.toml</code> file. <a href="https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html">Cargo.toml</a> is to Rust what <code>package.json</code> is to NodeJS. You'll see sections for <code>dependencies</code> and <code>dev-dependencies</code> and more generic information about this package/contract/crate.</p>
 <p>See those lines with <code>overflow-checks = false</code>? Change them to <code>overflow-checks = true</code>. Now rebuild and redeploy:</p>
-<pre><code class="language-bash">raen build --release -q | xargs -I {} near dev-deploy --wasmFile {}
+<pre><code class="language-bash">near dev-deploy $(raen build --release -q)
 </code></pre>
 <p>You'll see that this takes longer to build than when you make changes to your contract itself. Rust needs to recompile all of your dependencies using the new setting.</p>
 <p>Refresh your admin panel, set the number back to <code>127</code>, and call <code>increment</code>. You'll see an error message. This means the contract panicked rather than allowing the integer overflow. It worked!</p>

@@ -47,7 +47,7 @@ If you're following along with your own code, you can build and re-deploy to see
 near dev-deploy $(raen build --release -q)
 ```
 
-(This [uses `bash` interpolation](https://stackoverflow.com/a/23656236/249801) put the output of `raen build` in the correct spot in the `near dev-deploy` command. You can try `raen build --release` and `raen build --release -q` on their own to understand the compound command.)
+(This [command substitution](https://hyperpolyglot.org/unix-shells#cmd-subst-note) to put the output of `raen build` in the correct spot in the `near dev-deploy` command, which will only work in `bash` and similar shells. You can try `raen build --release` and `raen build --release -q` on their own to understand the compound command.)
 
 If you've already incremented or decremented the number, though, you'll see that this made no change. Which is what you'd expect! It only changes the _default_. That is, the value that is shown if you didn't actually change it and store the new value.
 

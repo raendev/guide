@@ -440,7 +440,8 @@ pub fn get_num(&amp;self) -&gt; i8 {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="updating-the-contract"><a class="header" href="#updating-the-contract">Updating the contract</a></h1>
 <p><a href="counter/./first_steps.html">Earlier</a> we said that if an <code>i8</code> is currently <code>127</code> and you increment it again, it will <em>overflow</em>, becoming <code>-128</code>. Likewise, it can <em>underflow</em> if currently <code>-128</code> and you decrement.</p>
-<p>Let's see if we can make <code>val</code> overflow! And then let's see how to prevent this.</p>
+<p>This would obviously be <strong>very bad news</strong> if you were building your own smart-contract-based currency!</p>
+<p>Let's see if we can make <code>val</code> overflow. And then let's see how to prevent this.</p>
 <h1 id="method-1-mash-increment-128-times"><a class="header" href="#method-1-mash-increment-128-times">Method 1: mash <code>increment</code> 128 times</a></h1>
 <p>With the existing contract, you could use the RAEN Admin panel and mash the Submit button on the <code>increment</code> form 128 times.</p>
 <p>This could take a while, though! Let's see if we can improve the code to make it easier.</p>

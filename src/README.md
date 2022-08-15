@@ -11,8 +11,8 @@ These are useful. These are fine. Especially the Rust Book. We recommend you rea
 But none are what we wanted:
 
 - A quick intro to Rust, providing just enough depth to get you started on your Smart Contract journey;
-- A quick explainer of what Smart Contracts even are, and what sorts of problems they solve;
-- Examples you can "touch and feel" in the [RAEN Admin](https://raen.dev/admin) panel, so you get a quick feedback loop between modifying Rust code and actually using the resulting smart contract.
+- Examples you can "touch and feel" in the [RAEN Admin](https://raen.dev/admin) panel, so you get a quick feedback loop between modifying Rust code and actually using the resulting smart contract;
+- Progressively more complex examples, so you can see the basics clearly and then build on those patterns.
 
 That is, something like [RAEN](https://raen.dev) itself, built to help developers launch NEAR apps faster than they thought possible.
 

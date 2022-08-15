@@ -59,9 +59,11 @@
    raen build --release
    ```
 
-   This may take a minute. Rust fetches dependencies and compiles your project in one step. It will go faster on subsequent runs.
+   This wraps `cargo build --release`, adding some extra goodies.
 
-   If you skip this, the editor setup from Step 5 won't work.
+   It may take a minute. Rust fetches dependencies and compiles your project in one step. Subsequent runs will go faster.
+
+   If you skip this, the editor setup from Step 5 won't work. The help docs shown by your editor are fetched along with the dependencies themselves.
 
 8. Open an example.
 

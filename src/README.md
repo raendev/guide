@@ -31,3 +31,7 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 ### About the name
 
 "RAEN" is "NEAR" spelled backwards. It is pronounced the same as "rain".
+
+## Let's get going!
+
+Ok, if you're still here, you're ready to install some dependencies and look at some examples! Click to the next chapter.

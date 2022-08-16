@@ -1,6 +1,6 @@
 # Updating the contract
 
-[Earlier](./first_steps.md) we said that if an `i8` is currently `127` and you increment it again, it will _overflow_, becoming `-128`. Likewise, it can _underflow_ if currently `-128` and you decrement.
+Without [overflow checks](https://doc.rust-lang.org/cargo/reference/profiles.html#overflow-checks) enabled, if `val` is currently `127`, the next time it is incremented it will _overflow_, wrapping around to be `-128`. Likewise, it can _underflow_ if currently `-128` and you decrement.
 
 This would obviously be **very bad news** if you were building your own smart-contract-based currency!
 

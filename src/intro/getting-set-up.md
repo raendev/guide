@@ -64,3 +64,5 @@
    It may take a minute. Rust fetches dependencies and compiles your project in one step. Subsequent runs will go faster.
 
    If you skip this, the editor setup from Step 5 won't work. The help docs shown by your editor are fetched along with the dependencies themselves.
+
+Now you're ready to play with some Rust code. Let's go!

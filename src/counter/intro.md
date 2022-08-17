@@ -26,12 +26,12 @@ About this:
 |----------|------------
 | `struct` | A data structure with fields, similar to a class, object, Hash, or Dictionary in other languages. This `struct` is named `Counter`; you could name it whatever you want.
 | `val` | This is a variable name; you could change it (using the `F2` key in VS Code) to anything else you want, such as `counter` or `number` or `num`.
-| `i8` | `val` is of type `i8`, a signed 8-bit integer. This means it can be between -128 and 127.[^numbers]
-| `pub` | Short for `public`, meaning that the item is visible outside of the file[^namespaces]. You need this on the `struct` you intend to store in contract storage. **WHY** do we need this in addition to `#[near_bindgen]`?
+| `i8` | `val` is of type `i8`, a signed 8-bit integer. This means it can be between -128 and 127. <br><br>For more on Rust's number types, check out [The Rust Book's description](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types). For more on why `i8` goes from negative 128 but only to positive 127, search for primers about [how numbers get stored as binary](https://www.electronics-tutorials.ws/binary/signed-binary-numbers.html).
+| `pub` | Short for `public`, meaning that the item is visible outside of the file. You need this on the `struct` you intend to store in contract storage. <br><br>Technically `pub` is a [namespace](https://doc.rust-lang.org/reference/visibility-and-privacy.html), but that's not important right now.
 
 Ok, straightforward enough.
 
-But if you're actually looking at the code in your own editor, you're probably wondering above the stuff right above `pub struct Counter`:
+But if you're actually looking at the code in your own editor, you're probably wondering about the stuff right above `pub struct Counter`:
 
 ```rust,noplayground,ignore
 {{#include ../../examples/contracts/counter/src/lib.rs:8:12}}
@@ -45,13 +45,11 @@ Here's what these macros are doing:
 
 | Thing              | Explanation
 |--------------------|------------
-| `near_bindgen` | Generates [bindings](https://en.wikipedia.org/wiki/Language_binding) for NEAR. This is how you tell the NEAR Runtime that this is the `struct` you want to put in contract storage. **WHAT** code does this generate?
+| `near_bindgen` | Generates [bindings](https://en.wikipedia.org/wiki/Language_binding) for NEAR. This is how you tell the NEAR Runtime that this is the `struct` you want to put in contract storage.
 | `derive(...)` | The _[`derive` attribute](https://doc.rust-lang.org/reference/attributes/derive.html)_. Takes a list of [_derive macros_](https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros), and generates extra code for each one.
 | `Default` | Generates a default value for the `struct`. If you check the rest of the file, you'll see that we never initialize `Counter` or `val`. But when you deploy the contract, you'll see that `val` defaults to `0`.
 | `BorshSerialize` | Generates boilerplate for taking your in-memory contract data and turning it into borsh-serialized bytes to store on-disk.
 | `BorshDeserialize` | Generates boilerplate for reading borsh-serialized, on-disk bytes and turning them into in-memory data structures.
-
-**WHY** doesn't `near_bindgen` automatically `derive(BorshDeserialize, BorshSerialize)`? Is it because people may want the flexibility to represent bytes in some other way, or a limitation of Rust macros?
 
 <details>
 <summary>Expand this section to see the code the above <code>derive</code> macro will generate.</summary>
@@ -152,7 +150,7 @@ Next let's see how to mutate or change `val`. Look at the `increment` method sta
 | <nobr>`self.val += 1;`</nobr> | The same as `self.val = self.val + 1`. This mutates the `Counter` struct. Note that the new value will not be saved to contract storage until the method call is over. If you have a bug in the `log!` line or before the return line, the new value will not actually be persisted.
 | `log!` | This is a function-like macro, as mentioned above. `log!` generates code that formats a string and emits a log which you can see in [NEAR Explorer](https://explorer.near.org/) or other block-explorer tools.
 
-## Digging Deeper: External Interface Serialization
+## Digging Deeper: Result Serialization
 
 Look again at the view function `get_num`. It returns an `i8`. However, any call to a NEAR contract happens via [Remote Procedure Calls](https://docs.near.org/docs/api/overview#rpc-api), and this `i8` needs to be serialized into something the consumer can read. By default, `near_bindgen` generates code to serialize it into a JSON number, since this is the most common case, e.g. a web app calling `get_num`. If you really need to, you can override this setting. For example, this would serialize it to Borsh instead:
 
@@ -172,10 +170,6 @@ However, most of the time you will probably want to stick with the default JSON 
 
 ## Summary
 
-In this chapter we saw our first NEAR smart contract. We were introduced to some Rust basics, like its type system, numbers, `struct`, documentation comments, and (im)mutability. We saw how NEAR works with Rust to generate code for you using _macros_, leaving the Rust code itself clean and readable.
+In this chapter we saw our first NEAR smart contract. We were introduced to some Rust basics, like its type system, numbers, `struct`, documentation comments, and (im)mutability. We saw how NEAR works with Rust to generate code for you using _macros_, leaving your code clean and focused on your own logic, rather than various boilerplate.
 
 Next, we'll build the contract with `raen` and interact with it using RAEN Admin.
-
-[^numbers]: For more on Rust's number types, check out [The Rust Book's description](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#integer-types). For more on why `i8` goes from negative 128 but only to positive 127, search for primers about [how numbers get stored as binary](https://www.electronics-tutorials.ws/binary/signed-binary-numbers.html).
-
-[^namespaces]: Technically `pub` is a [namespace](https://doc.rust-lang.org/reference/visibility-and-privacy.html), but that's not important right now.

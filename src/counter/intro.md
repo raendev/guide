@@ -125,7 +125,7 @@ Go ahead and play with this a bit. Do things that don't make sense, and your wel
 
 * Change `-> i8` to `-> i16`
 * Change `-> i8` to `-> ()`, an empty [tuple](https://doc.rust-lang.org/stable/book/ch03-02-data-types.html#the-tuple-type)
-* Remove `-> i18` – note that you get the same error message as when you changed it to an empty tuple! Empty tuple is one of the closest things Rust has no a nothing/`null` type.
+* Remove `-> i18` – note that you get the same error message as when you changed it to an empty tuple! Empty tuple is one of the closest things Rust has to a `void` type.
 * Change `self.val` to `self.val;`
 * Change `self.val` to `return self.val;` and it will behave the same way as `self.val` with no semicolon. Note that this is super non-idiomatic! No one writes Rust this way. Get used to paying attention to the presence & lack of semicolons.
 

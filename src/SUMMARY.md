@@ -3,10 +3,8 @@
 - [Introduction](README.md)
   - [Getting Set Up](./intro/getting-set-up.md)
 - [Counter](./counter/intro.md)
-  - [Using RAEN](./counter/working_with_contract.md)
-  - [RAEN Admin](./counter/admin.md)
+  - [Using RAEN](./counter/raen.md)
   - [Updating the contract](./counter/updating.md)
-  - [Summary](./counter/summary.md)
 
 - [Status Message](./status-message/intro.md)
   - [Defining the data](./status-message/simple/simple.md)

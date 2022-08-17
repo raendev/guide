@@ -4,7 +4,7 @@ At its core, the NEAR blockchain is a big database. A contract is a program with
 
 The simplest example of this is a counter. A contract that can read, increment, and decrement a value.
 
-To follow along, use VS Code to open the `contracts/counter` folder inside the `raen-examples` project that you cloned in the last chapter. Then open `src/lib.rs`. We'll walk through this code in order.
+To follow along, use VS Code to open the `contracts/counter` folder inside the `raen-examples` project that you cloned in [Getting Set Up](../intro/getting-set-up.md). Then open `src/lib.rs`. We'll walk through this code in order.
 
 ## Docs & Imports
 
@@ -170,6 +170,6 @@ However, most of the time you will probably want to stick with the default JSON 
 
 ## Summary
 
-In this chapter we saw our first NEAR smart contract. We were introduced to some Rust basics, like its type system, numbers, `struct`, documentation comments, and (im)mutability. We saw how NEAR works with Rust to generate code for you using _macros_, leaving your code clean and focused on your own logic, rather than various boilerplate.
+In this unit we saw our first NEAR smart contract. We were introduced to some Rust basics, like its type system, numbers, `struct`, documentation comments, and (im)mutability. We saw how NEAR works with Rust to generate code for you using _macros_, leaving your code clean and focused on your own logic, rather than various boilerplate.
 
 Next, we'll build the contract with `raen` and interact with it using RAEN Admin.

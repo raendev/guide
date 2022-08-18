@@ -121,8 +121,6 @@ If you're _using_ a smart contract, especially if you're considering trusting it
 
 ## Summary
 
-Over this whole Counter chapter, we saw our first Rust code: a simple NEAR smart contract that implements a counter. Anyone can call `get_num` to see the current value, and anyone can change the number, too!
-
 In this unit we learned about integer overflows, and played with them by updating our code to change the default value and add a new change method. We saw that we only need to refresh the RAEN Admin page to see the latest changes. We fixed the integer overflow bug by changing `Cargo.toml` settings. And we also learned about blockchain immutability and Full Access keys.
 
-Overall, this Counter was a good way to learn some Rust and NEAR basics, but pretty silly as a real contract. Next, let's take a look at an example that does something more useful, storing different information for every user who calls the contract.
+Next, let's learn how to deploy to a nicely-named account like `counter.raendev.testnet`.

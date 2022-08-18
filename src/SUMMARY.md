@@ -5,6 +5,7 @@
 - [Counter](./counter/intro.md)
   - [Using RAEN](./counter/raen.md)
   - [Updating the contract](./counter/updating.md)
+  - [Deploying to a subaccount](./counter/subaccounts.md)
 
 - [Status Message](./status-message/intro.md)
   - [Defining the data](./status-message/simple/simple.md)

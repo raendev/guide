@@ -107,7 +107,7 @@ Great questions!
 
 On other blockchains, it is in fact very difficult to upgrade a contract. They work around this with proxy contracts and other patterns.
 
-But NEAR has that handy account system, where each account has multiple keys. We already learned about _Function Call Access Keys_ in the last unit; that's what makes it safe to have a web-based wallet, with web apps that store a private key in local storage.
+But NEAR has that handy account system, where each account can have multiple keys. We already learned about _Function Call Access Keys_ last unit; that's what makes it safe to have a web-based wallet, with web apps that store a restricted private key in a browser's local storage.
 
 The other kind of key is a _Full Access_ key. When you run `dev-deploy`, you get a Full Access key to a brand new testnet account. If you have a Full Access key, you can do anything with that account. Deploy or remove a contract, call other contracts, send tokens, create sub-accounts, even delete the account.
 

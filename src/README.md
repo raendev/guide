@@ -32,6 +32,12 @@ If you have experience with NEAR, you can skip ahead to [Chapter 5: Status Messa
 
 "RAEN" is "NEAR" spelled backwards. It is pronounced the same as "rain".
 
+## Prefer video?
+
+<div style="padding-bottom:56.25%;height:0;position:relative;padding-top:30px;overflow:hidden;">
+  <iframe style="position:absolute;left:0;top:0;width:100%;height:100%;" src="https://www.youtube.com/embed/3Qz98Irp13M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Let's get going!
 
 Ok, if you're still here, you're ready to install some dependencies and look at some examples! Click to the next chapter.
